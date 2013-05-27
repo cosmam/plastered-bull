@@ -8,57 +8,16 @@
 using namespace Data;
 
 CustomGoal::CustomGoal(QObject *parent) :
-    Goal(parent),
-    d_ptr( new CustomGoalPrivate( this ) )
+    Goal(*new Data::CustomGoalPrivate, parent)
 {
+    Q_D(Data::CustomGoal);
+    d->setParent(this);
+    d->q_ptr = this;
+    d->init();
 }
 
 CustomGoal::~CustomGoal()
 {
-    delete d_ptr;
-}
-
-void CustomGoal::setColor( const QColor & color )
-{
-    if( color.isValid() ) {
-        Q_D(Data::CustomGoal);
-        d->color = color;
-        emit colorChanged( d->color );
-    }
-}
-
-QColor CustomGoal::color() const
-{
-    Q_D(const Data::CustomGoal);
-    return d->color;
-}
-
-void CustomGoal::setName( const QString & name )
-{
-    if( !name.isNull() ) {
-        Q_D(Data::CustomGoal);
-        d->name = name;
-        emit nameChanged( d->name );
-    }
-}
-
-QString CustomGoal::name() const
-{
-    Q_D(const Data::CustomGoal);
-    return d->name;
-}
-
-void CustomGoal::setCriteria( const Data::Criteria & criteria )
-{
-    Q_D(CustomGoal);
-    d->criteria = criteria;
-	criteriaChanged( criteria );
-}
-
-Data::Criteria CustomGoal::criteria() const
-{
-    Q_D(const Data::CustomGoal);
-    return d->criteria;
 }
 
 QDateTime CustomGoal::start() const
@@ -120,13 +79,18 @@ UI::GoalWidgetBase * CustomGoal::CreateWidget()
 
 /**************** Private Class ***************/
 
-CustomGoalPrivate::CustomGoalPrivate(CustomGoal *parent) :
-    QObject(parent),
-    name(""),
-    color(QColor(0,0,0)),
+CustomGoalPrivate::CustomGoalPrivate() :
+    GoalPrivate(),
     startDate(QDate::currentDate()),
-    duration(0),
-    q_ptr(parent)
+    duration(0)
+{
+}
+
+CustomGoalPrivate::~CustomGoalPrivate()
+{
+}
+
+void CustomGoalPrivate::init()
 {
     Q_Q(Data::CustomGoal);
     connect( q, SIGNAL( nameChanged( QString ) ),

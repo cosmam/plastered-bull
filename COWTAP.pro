@@ -13,6 +13,7 @@ TEMPLATE = app
 
 INCLUDEPATH +=  src \
     src/Data \
+    src/Data/Private \
     src/Data/Goal \
     src/Data/Goal/Private \
     src/Data/Goal/Widgets \
@@ -41,6 +42,12 @@ SOURCES += src/main.cpp\
     src/Data/Goal/Widgets/Calendar/goalcalendar.cpp \
     src/Data/Goal/Widgets/Calendar/calendarday.cpp \
     src/Data/Goal/Widgets/Calendar/calendarmonth.cpp \
+    src/Data/Goal/Widgets/Calendar/selectionmanager.cpp \
+    src/Data/Goal/Widgets/Calendar/selectablewidget.cpp \
+    src/Data/Goal/Widgets/Calendar/goalcalendaritem.cpp \
+    src/Data/Goal/Widgets/Calendar/calendarmodel.cpp \
+    src/Data/Goal/Widgets/Calendar/calendargoal.cpp \
+    src/Data/challenge.cpp
 
 HEADERS  += src/mainwindow.h \
     src/timefunctions.h \
@@ -75,7 +82,20 @@ HEADERS  += src/mainwindow.h \
     src/Data/Goal/Widgets/Private/yeargoalwidget_p.h \
     src/Data/Goal/Widgets/Private/weekgoalwidget_p.h \
     src/Data/Goal/Widgets/Private/monthgoalwidget_p.h \
-    src/Data/Goal/Widgets/Private/daygoalwidget_p.h
+    src/Data/Goal/Widgets/Private/daygoalwidget_p.h \
+    src/Data/Goal/Widgets/Calendar/selectionmanager.h \
+    src/Data/Goal/Widgets/Calendar/selectablewidget.h \
+    src/Data/Goal/Widgets/Calendar/goalcalendaritem.h \
+    src/Data/Goal/Widgets/Calendar/Private/selectionmanager_p.h \
+    src/Data/Goal/Widgets/Calendar/Private/selectablewidget_p.h \
+    src/Data/Goal/Widgets/Calendar/Private/goalcalendaritem_p.h \
+    src/Data/Goal/Widgets/Calendar/Private/calendarmodel_p.h \
+    src/Data/Goal/Widgets/Calendar/calendarmodel.h \
+    src/Data/Goal/Widgets/Calendar/calendargoal.h \
+    src/Data/Goal/Widgets/Calendar/Private/calendargoal_p.h \
+    src/Data/challenge.h \
+    src/Data/Private/challenge_p.h \
+    src/Data/Goal/Private/goal_p.h
 	
 FORMS    += src/mainwindow.ui \
     src/Data/Goal/Widgets/yeargoalwidget.ui \
@@ -85,4 +105,5 @@ FORMS    += src/mainwindow.ui \
     src/Data/Goal/Widgets/customgoalwidget.ui \
     src/Data/Goal/Widgets/Calendar/goalcalendar.ui \
     src/Data/Goal/Widgets/Calendar/calendarday.ui \
-    src/Data/Goal/Widgets/Calendar/calendarmonth.ui
+    src/Data/Goal/Widgets/Calendar/calendarmonth.ui \
+    src/Data/Goal/Widgets/Calendar/calendargoal.ui

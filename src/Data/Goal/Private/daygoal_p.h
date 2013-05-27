@@ -1,11 +1,10 @@
 #ifndef DAYGOAL_P_H
 #define DAYGOAL_P_H
 
-#include "criteria.h"
+#include "goal_p.h"
+#include "daygoal.h"
 
-#include <QColor>
 #include <QDate>
-#include <QObject>
 #include <QPointer>
 
 namespace UI
@@ -19,22 +18,20 @@ namespace Data
 class DayGoal;
 class Goal;
 
-class DayGoalPrivate : public QObject
+class DayGoalPrivate : public GoalPrivate
 {
     Q_OBJECT
     Q_DECLARE_PUBLIC(Data::DayGoal);
+    Q_DISABLE_COPY(DayGoalPrivate);
 
 public:
-    explicit DayGoalPrivate(DayGoal *parent);
+    explicit DayGoalPrivate();
+    ~DayGoalPrivate();
     
-    QString name;
-    QColor color;
-    Data::Criteria criteria;
+    void init();
+
     QDate date;
     QPointer<UI::DayGoalWidget> widget;   
-    DayGoal * const q_ptr;
-
-    Q_DISABLE_COPY(DayGoalPrivate);
 
 public Q_SLOTS:
 

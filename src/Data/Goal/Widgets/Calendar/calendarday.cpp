@@ -7,16 +7,17 @@
 using namespace UI;
 
 CalendarDay::CalendarDay(QWidget *parent) :
-    QWidget(parent),
-    d_ptr( new UI::CalendarDayPrivate( this ) )
+    GoalCalendarItem(*new UI::CalendarDayPrivate, parent)
 {
     Q_D(UI::CalendarDay);
+    d->setParent(this);
+    d->q_ptr = this;
+    d->init();
     d->PositionWidgets();
 }
 
 CalendarDay::~CalendarDay()
 {
-    delete d_ptr;
 }
 
 void CalendarDay::SetDay(int day)
@@ -46,12 +47,10 @@ void CalendarDay::resizeEvent(QResizeEvent * e)
 
 /**************** Private Class ***************/
 
-CalendarDayPrivate::CalendarDayPrivate(CalendarDay *parent) :
-    QObject(parent),
-    m_ui(new Ui::CalendarDay),
-    q_ptr(parent)
+CalendarDayPrivate::CalendarDayPrivate() :
+    GoalCalendarItemPrivate(),
+    m_ui(new Ui::CalendarDay)
 {
-    m_ui->setupUi(q_ptr);
 }
 
 CalendarDayPrivate::~CalendarDayPrivate()
@@ -59,10 +58,15 @@ CalendarDayPrivate::~CalendarDayPrivate()
     delete m_ui;
 }
 
-
 void CalendarDayPrivate::SetDayLabel( const QString & label )
 {
     m_ui->day_Label->setText( label );
+}
+
+void CalendarDayPrivate::init()
+{
+    Q_Q(UI::CalendarDay);
+    m_ui->setupUi(q);
 }
 
 void CalendarDayPrivate::PositionWidgets()

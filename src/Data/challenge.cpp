@@ -1,30 +1,29 @@
 #include "challenge.h"
+#include "challenge_p.h"
 
 using namespace Data;
 
 Challenge::Challenge(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    d_ptr( new ChallengePrivate )
 {
 }
 
-void Challenge::setColor( const QColor & color )
+Challenge::Challenge(ChallengePrivate &d, QObject *parent) :
+    QObject(parent),
+    d_ptr(&d)
 {
-    m_color = color;
-    emit colorChanged( m_color );
 }
 
-QColor Challenge::color() const
+/**************** Private Class ***************/
+
+ChallengePrivate::ChallengePrivate() :
+    QObject(),
+    q_ptr(NULL)
 {
-    return m_color;
 }
 
-void Challenge::setName( const QString & name )
+void ChallengePrivate::init()
 {
-    m_name = name;
-    emit nameChanged( m_name );
-}
 
-QString Challenge::name() const
-{
-    return m_name;
 }

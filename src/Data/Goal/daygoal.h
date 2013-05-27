@@ -14,21 +14,13 @@ class DayGoal : public Goal
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(Data::DayGoal);
+    Q_DISABLE_COPY(DayGoal);
 
 public:
-    explicit DayGoal(QObject *parent = NULL);
+    explicit DayGoal(QObject *parent = 0);
     ~DayGoal();
 	
-	void setColor( const QColor & color );
-	QColor color() const;
-	
-	void setName( const QString & name );
-	QString name() const;
-
-	void setCriteria( const Data::Criteria & criteria );
-	Data::Criteria criteria() const;
-	
-	QDateTime start() const;
+    QDateTime start() const;
 	QDateTime end() const;
 
 	void setDate( const QDate & date );
@@ -41,11 +33,6 @@ public Q_SLOTS:
 Q_SIGNALS:
 
     void dateChanged( QDate );
-	
-private:
-
-    Q_DISABLE_COPY(DayGoal);
-    DayGoalPrivate * const d_ptr;
 };
 
 }

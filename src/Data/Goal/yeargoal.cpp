@@ -7,57 +7,12 @@
 using namespace Data;
 
 YearGoal::YearGoal(QObject *parent) :
-    Goal(parent),
-    d_ptr( new YearGoalPrivate( this ) )
+    Goal(*new Data::YearGoalPrivate, parent)
 {
 }
 
 YearGoal::~YearGoal()
 {
-    delete d_ptr;
-}
-
-void YearGoal::setColor( const QColor & color )
-{
-    if( color.isValid() ) {
-        Q_D(Data::YearGoal);
-        d->color = color;
-        emit colorChanged( d->color );
-    }
-}
-
-QColor YearGoal::color() const
-{
-    Q_D(const Data::YearGoal);
-    return d->color;
-}
-
-void YearGoal::setName( const QString & name )
-{
-    if( !name.isNull() ) {
-        Q_D(Data::YearGoal);
-        d->name = name;
-        emit nameChanged( d->name );
-    }
-}
-
-QString YearGoal::name() const
-{
-    Q_D(const Data::YearGoal);
-    return d->name;
-}
-
-void YearGoal::setCriteria( const Data::Criteria & criteria )
-{
-    Q_D(Data::YearGoal);
-    d->criteria = criteria;
-	criteriaChanged( criteria );
-}
-
-Data::Criteria YearGoal::criteria() const
-{
-    Q_D(const Data::YearGoal);
-    return d->criteria;
 }
 
 QDateTime YearGoal::start() const
@@ -105,12 +60,17 @@ UI::GoalWidgetBase *YearGoal::CreateWidget()
 
 /**************** Private Class ***************/
 
-YearGoalPrivate::YearGoalPrivate( YearGoal * parent ) :
-    QObject(parent),
-    name(""),
-    color(QColor(0,0,0)),
-    year(QDate::currentDate().year()),
-    q_ptr(parent)
+YearGoalPrivate::YearGoalPrivate() :
+    GoalPrivate(),
+    year(QDate::currentDate().year())
+{
+}
+
+YearGoalPrivate::~YearGoalPrivate()
+{
+}
+
+void YearGoalPrivate::init()
 {
     Q_Q(Data::YearGoal);
     connect( q, SIGNAL( nameChanged( QString ) ),

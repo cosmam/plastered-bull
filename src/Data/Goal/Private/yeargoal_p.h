@@ -1,11 +1,10 @@
-#ifndef YEARGOALPRIVATE_H
-#define YEARGOALPRIVATE_H
+#ifndef YEARGOAL_P_H
+#define YEARGOAL_P_H
 
-#include <QColor>
-#include <QObject>
+#include "goal_p.h"
+#include "yeargoal.h"
+
 #include <QPointer>
-
-#include "criteria.h"
 
 namespace UI
 {
@@ -18,22 +17,20 @@ namespace Data
 class Goal;
 class YearGoal;
 
-class YearGoalPrivate : public QObject
+class YearGoalPrivate : public GoalPrivate
 {
     Q_OBJECT
     Q_DECLARE_PUBLIC(Data::YearGoal);
+    Q_DISABLE_COPY(YearGoalPrivate);
 
 public:
-    YearGoalPrivate( YearGoal * parent );
+    YearGoalPrivate();
+    ~YearGoalPrivate();
 
-    QString name;
-    QColor color;
-    Data::Criteria criteria;
+    void init();
+
     int year;
     QPointer<UI::YearGoalWidget> widget;
-    YearGoal * const q_ptr;
-
-    Q_DISABLE_COPY(YearGoalPrivate);
 
 public Q_SLOTS:
 
@@ -43,4 +40,4 @@ public Q_SLOTS:
 
 }
 
-#endif // YEARGOALPRIVATE_H
+#endif // YEARGOAL_P_H

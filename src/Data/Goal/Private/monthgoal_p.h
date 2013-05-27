@@ -1,11 +1,11 @@
 #ifndef MONTHGOAL_P_H
 #define MONTHGOAL_P_H
 
-#include "criteria.h"
+#include "goal_p.h"
+#include "monthgoal.h"
+
 #include "timefunctions.h"
 
-#include <QColor>
-#include <QObject>
 #include <QPointer>
 
 namespace UI
@@ -19,23 +19,21 @@ namespace Data
 class Goal;
 class MonthGoal;
 
-class MonthGoalPrivate : public QObject
+class MonthGoalPrivate : public GoalPrivate
 {
     Q_OBJECT
     Q_DECLARE_PUBLIC(Data::MonthGoal);
+    Q_DISABLE_COPY(MonthGoalPrivate);
 
 public:
-    explicit MonthGoalPrivate(MonthGoal *parent);
+    explicit MonthGoalPrivate();
+    ~MonthGoalPrivate();
 
-    QString name;
-    QColor color;
-    Data::Criteria criteria;
+    void init();
+
     Time::Month month;
     int year;
     QPointer<UI::MonthGoalWidget> widget;   
-    MonthGoal * const q_ptr;
-
-    Q_DISABLE_COPY(MonthGoalPrivate);
 
 public Q_SLOTS:
 

@@ -1,7 +1,7 @@
 #ifndef CALENDARDAY_H
 #define CALENDARDAY_H
 
-#include <QWidget>
+#include "goalcalendaritem.h"
 
 namespace Data
 {
@@ -13,7 +13,7 @@ namespace UI
 
 class CalendarDayPrivate;
 
-class CalendarDay : public QWidget
+class CalendarDay : public GoalCalendarItem
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(UI::CalendarDay);
@@ -35,7 +35,6 @@ protected:
 private:
 
     Q_DISABLE_COPY(CalendarDay);
-    CalendarDayPrivate * const d_ptr;
 };
 
 }

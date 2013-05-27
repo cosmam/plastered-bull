@@ -6,57 +6,16 @@
 using namespace Data;
 
 MonthGoal::MonthGoal(QObject *parent) :
-    Goal(parent),
-    d_ptr( new MonthGoalPrivate( this ) )
+    Goal(*new Data::MonthGoalPrivate, parent)
 {
+    Q_D(Data::MonthGoal);
+    d->setParent(this);
+    d->q_ptr = this;
+    d->init();
 }
 
 MonthGoal::~MonthGoal()
 {
-    delete d_ptr;
-}
-	
-void MonthGoal::setColor( const QColor & color )
-{
-    if( color.isValid() ) {
-        Q_D(Data::MonthGoal);
-        d->color = color;
-        emit colorChanged( d->color );
-    }
-}
-
-QColor MonthGoal::color() const
-{
-    Q_D(const Data::MonthGoal);
-    return d->color;
-}
-
-void MonthGoal::setName( const QString & name )
-{
-    if( !name.isNull() ) {
-        Q_D(Data::MonthGoal);
-        d->name = name;
-        emit nameChanged( d->name );
-    }
-}
-
-QString MonthGoal::name() const
-{
-    Q_D(const Data::MonthGoal);
-    return d->name;
-}
-
-void MonthGoal::setCriteria( const Data::Criteria & criteria )
-{
-    Q_D(Data::MonthGoal);
-    d->criteria = criteria;
-	criteriaChanged( criteria );
-}
-
-Data::Criteria MonthGoal::criteria() const
-{
-    Q_D(const Data::MonthGoal);
-    return d->criteria;
 }
 
 QDateTime MonthGoal::start() const
@@ -122,13 +81,18 @@ UI::GoalWidgetBase *MonthGoal::CreateWidget()
 
 /**************** Private Class ***************/
 
-MonthGoalPrivate::MonthGoalPrivate(MonthGoal *parent) :
-    QObject(parent),
-    name(""),
-    color(QColor(0,0,0)),
+MonthGoalPrivate::MonthGoalPrivate() :
+    GoalPrivate(),
     month(Time::ToMonth(QDate::currentDate().month())),
-    year(QDate::currentDate().year()),
-    q_ptr(parent)
+    year(QDate::currentDate().year())
+{
+}
+
+MonthGoalPrivate::~MonthGoalPrivate()
+{
+}
+
+void MonthGoalPrivate::init()
 {
     Q_Q(Data::MonthGoal);
     connect( q, SIGNAL( nameChanged( QString ) ),

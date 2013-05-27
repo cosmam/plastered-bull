@@ -1,49 +1,34 @@
 #ifndef CHALLENGE_H
 #define CHALLENGE_H
 
-#include "commontypes.h"
-#include "criteria.h"
-
-#include<QColor>
-#include<QDateTime>
 #include<QObject>
-#include<QString>
+#include<QDateTime>
 
 namespace Data
 {
 
+class ChallengePrivate;
+
 class Challenge : public QObject
 {
 	Q_OBJECT
-    Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged );
-    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged );
+    Q_DECLARE_PRIVATE(Data::Challenge);
+    Q_DISABLE_COPY(Challenge);
 	
 public:
-
-    Challenge( QObject * parent = NULL );
-
+    explicit Challenge(QObject * parent = 0);
     virtual ~Challenge() {};
-	
-	void setColor( const QColor & color );
-	QColor color() const;
-	
-	void setName( const QString & name );
-	QString name() const;
-	
-    virtual UI::GoalWidgetBase * CreateWidget() const = 0;
-	
-signals:
 
-	void colorChanged( QColor );
-    void nameChanged( QString );
+    virtual QDateTime start() const = 0;
+    virtual QDateTime end() const = 0;
+
+public Q_SLOTS:
+
+Q_SIGNALS:
 	
 protected:
-
-    QString m_name;
-    QColor m_color;
-    Data::Criteria m_criteria;
-    QDateTime m_start;
-    QDateTime m_end;
+    explicit Challenge(ChallengePrivate & d, QObject * parent = 0);
+    ChallengePrivate * const d_ptr;
 };
 
 }

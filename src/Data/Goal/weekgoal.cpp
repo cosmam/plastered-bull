@@ -5,13 +5,19 @@
 
 #include "customgoal.h"
 
+#include <QDateTime>
+
 using namespace Data;
 
 WeekGoal::WeekGoal(QObject *parent) :
-    Goal(parent),
-    d_ptr( new WeekGoalPrivate( this ) )
+    Goal(*new Data::WeekGoalPrivate, parent)
 {
     Q_D(Data::WeekGoal);
+
+    d->setParent(this);
+    d->q_ptr = this;
+    d->init();
+
     connect( d->goal, SIGNAL( colorChanged( QColor ) ),
 	         this, SIGNAL( colorChanged( QColor ) ) );
     connect( d->goal, SIGNAL( nameChanged( QString ) ),
@@ -24,44 +30,6 @@ WeekGoal::WeekGoal(QObject *parent) :
 
 WeekGoal::~WeekGoal()
 {
-    delete d_ptr->goal;
-    delete d_ptr;
-}
-
-void WeekGoal::setColor( const QColor & color )
-{
-    Q_D(Data::WeekGoal);
-    d->goal->setColor( color );
-}
-
-QColor WeekGoal::color() const
-{
-    Q_D(const Data::WeekGoal);
-    return d->goal->color();
-}
-
-void WeekGoal::setName( const QString & name )
-{
-    Q_D(Data::WeekGoal);
-    d->goal->setName( name );
-}
-
-QString WeekGoal::name() const
-{
-    Q_D(const Data::WeekGoal);
-    return d->goal->name();
-}
-
-void WeekGoal::setCriteria( const Data::Criteria & criteria )
-{
-    Q_D(Data::WeekGoal);
-    d->goal->setCriteria( criteria );
-}
-
-Data::Criteria WeekGoal::criteria() const
-{
-    Q_D(const Data::WeekGoal);
-    return d->goal->criteria();
 }
 
 QDateTime WeekGoal::start() const
@@ -104,9 +72,17 @@ UI::GoalWidgetBase * WeekGoal::CreateWidget()
 
 /**************** Private Class ***************/
 
-WeekGoalPrivate::WeekGoalPrivate( WeekGoal * parent ) :
-    QObject(parent),
-    q_ptr(parent)
+WeekGoalPrivate::WeekGoalPrivate() :
+    GoalPrivate()
+{
+}
+
+WeekGoalPrivate::~WeekGoalPrivate()
+{
+    delete goal;
+}
+
+void WeekGoalPrivate::init()
 {
     goal = new CustomGoal();
     goal->setDuration(7);

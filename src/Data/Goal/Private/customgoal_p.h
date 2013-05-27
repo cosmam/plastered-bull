@@ -1,11 +1,10 @@
 #ifndef CUSTOMGOAL_P_H
 #define CUSTOMGOAL_P_H
 
-#include "criteria.h"
+#include "goal_p.h"
+#include "customgoal.h"
 
-#include <QColor>
 #include <QDate>
-#include <QObject>
 #include <QPointer>
 
 namespace UI
@@ -19,21 +18,20 @@ namespace Data
 class CustomGoal;
 class Goal;
 
-class CustomGoalPrivate : public QObject
+class CustomGoalPrivate : public GoalPrivate
 {
     Q_OBJECT
     Q_DECLARE_PUBLIC(Data::CustomGoal);
 
 public:
-    explicit CustomGoalPrivate(CustomGoal *parent);
-    
-    QString name;
-    QColor color;
-    Data::Criteria criteria;
+    explicit CustomGoalPrivate();
+    ~CustomGoalPrivate();
+
+    void init();
+
     QDate startDate;
     int duration;
     QPointer<UI::CustomGoalWidget> widget;
-    CustomGoal * const q_ptr;
 
     Q_DISABLE_COPY(CustomGoalPrivate);
 

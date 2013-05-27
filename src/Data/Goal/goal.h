@@ -1,12 +1,11 @@
 #ifndef GOAL_H
 #define GOAL_H
 
+#include "challenge.h"
 #include "commontypes.h"
 #include "criteria.h"
 
 #include<QColor>
-#include<QDateTime>
-#include<QObject>
 #include<QString>
 
 namespace UI
@@ -17,39 +16,44 @@ namespace UI
 namespace Data
 {
 
-class GoalData;
-class Goal : public QObject
+class GoalPrivate;
+
+class Goal : public Challenge
 {
 	Q_OBJECT
+    Q_DECLARE_PRIVATE(Data::Goal);
 
 public:
 
-    Goal( QObject * parent = NULL );
-
+    Goal( QObject * parent = 0 );
     virtual ~Goal() {};
 	
-	virtual void setColor( const QColor & color ) = 0;
-	virtual QColor color() const = 0;
+    void setColor( const QColor & color );
+    QColor color() const;
 	
-	virtual void setName( const QString & name ) = 0;
-	virtual QString name() const = 0;
+    void setName( const QString & name );
+    QString name() const;
 
-	virtual void setCriteria( const Data::Criteria & criteria ) = 0;
-	virtual Data::Criteria criteria() const = 0;
-	
-	virtual QDateTime start() const = 0;
-	virtual QDateTime end() const = 0;
-	
+    void setCriteria( const Data::Criteria & criteria );
+    Data::Criteria criteria() const;
+		
     virtual UI::GoalWidgetBase * CreateWidget() = 0;
 
     ID_t id() const;
 	
+public Q_SLOTS:
+
 Q_SIGNALS:
 
 	void colorChanged( QColor );
     void nameChanged( QString );
 	void criteriaChanged( Data::Criteria );
 	void goalChanged( Data::Goal * );
+
+protected:
+    explicit Goal(GoalPrivate & d, QObject * parent = 0);
+
+    Q_DISABLE_COPY(Goal);
 };
 
 }

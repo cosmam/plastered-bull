@@ -12,20 +12,12 @@ class WeekGoal : public Goal
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(Data::WeekGoal);
+    Q_DISABLE_COPY(WeekGoal);
 
 public:
     explicit WeekGoal(QObject *parent = 0);
     ~WeekGoal();
 
-	void setColor( const QColor & color );
-	QColor color() const;
-	
-	void setName( const QString & name );
-	QString name() const;
-
-	void setCriteria( const Data::Criteria & criteria );
-	Data::Criteria criteria() const;
-	
 	QDateTime start() const;
 	QDateTime end() const;
 
@@ -39,11 +31,6 @@ public Q_SLOTS:
 Q_SIGNALS:
    
  	void startDateChanged( QDate );
-
-private:
-
-    Q_DISABLE_COPY(WeekGoal);
-    WeekGoalPrivate * const d_ptr;
 };
 
 }

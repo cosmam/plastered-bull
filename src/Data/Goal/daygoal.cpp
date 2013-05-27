@@ -7,57 +7,16 @@
 using namespace Data;
 
 DayGoal::DayGoal(QObject *parent) :
-    Goal(parent),
-    d_ptr( new DayGoalPrivate( this ) )
+    Goal(*new Data::DayGoalPrivate, parent)
 {
+    Q_D(Data::DayGoal);
+    d->setParent(this);
+    d->q_ptr = this;
+    d->init();
 }
 
 DayGoal::~DayGoal()
 {
-    delete d_ptr;
-}
-
-void DayGoal::setColor( const QColor & color )
-{
-    if( color.isValid() ) {
-        Q_D(Data::DayGoal);
-        d->color = color;
-        emit colorChanged( d->color );
-    }
-}
-
-QColor DayGoal::color() const
-{
-    Q_D(const Data::DayGoal);
-    return d->color;
-}
-
-void DayGoal::setName( const QString & name )
-{
-    if( !name.isNull() ) {
-        Q_D(Data::DayGoal);
-        d->name = name;
-        emit nameChanged( d->name );
-    }
-}
-
-QString DayGoal::name() const
-{
-    Q_D(const Data::DayGoal);
-    return d->name;
-}
-
-void DayGoal::setCriteria( const Data::Criteria & criteria )
-{
-    Q_D(Data::DayGoal);
-    d->criteria = criteria;
-	criteriaChanged( criteria );
-}
-
-Data::Criteria DayGoal::criteria() const
-{
-    Q_D(const Data::DayGoal);
-    return d->criteria;
 }
 
 QDateTime DayGoal::start() const
@@ -103,12 +62,17 @@ UI::GoalWidgetBase *DayGoal::CreateWidget()
 
 /**************** Private Class ***************/
 
-DayGoalPrivate::DayGoalPrivate(DayGoal *parent) :
-    QObject(parent),
-    name(""),
-    color(QColor(0,0,0)),
-    date(QDate::currentDate()),
-    q_ptr(parent)
+DayGoalPrivate::DayGoalPrivate() :
+    GoalPrivate(),
+    date(QDate::currentDate())
+{
+}
+
+DayGoalPrivate::~DayGoalPrivate()
+{
+}
+
+void DayGoalPrivate::init()
 {
     Q_Q(Data::DayGoal);
     connect( q, SIGNAL( nameChanged( QString ) ),
