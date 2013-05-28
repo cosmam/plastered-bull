@@ -47,7 +47,8 @@ SOURCES += src/main.cpp\
     src/Data/Goal/Widgets/Calendar/goalcalendaritem.cpp \
     src/Data/Goal/Widgets/Calendar/calendarmodel.cpp \
     src/Data/Goal/Widgets/Calendar/calendargoal.cpp \
-    src/Data/challenge.cpp
+    src/Data/challenge.cpp \
+    src/widgetfunctions.cpp
 
 HEADERS  += src/mainwindow.h \
     src/timefunctions.h \
@@ -95,7 +96,8 @@ HEADERS  += src/mainwindow.h \
     src/Data/Goal/Widgets/Calendar/Private/calendargoal_p.h \
     src/Data/challenge.h \
     src/Data/Private/challenge_p.h \
-    src/Data/Goal/Private/goal_p.h
+    src/Data/Goal/Private/goal_p.h \
+    src/widgetfunctions.h
 	
 FORMS    += src/mainwindow.ui \
     src/Data/Goal/Widgets/yeargoalwidget.ui \

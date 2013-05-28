@@ -6,6 +6,9 @@
 namespace UI
 {
 
+class CalendarDay;
+class CalendarModel;
+class GoalCalendarItem;
 class SelectionManager;
 
 class SelectionManagerPrivate : public QObject
@@ -16,12 +19,25 @@ class SelectionManagerPrivate : public QObject
 public:
     explicit SelectionManagerPrivate(SelectionManager *parent);
 	~SelectionManagerPrivate();
+
+    void BreakModelConnections() const;
+    void MakeModelConnections() const;
+    void UnselectAll();
+
+    void SetItemSelected(UI::CalendarDay * item, bool selected);
+    void StyleItems();
+
+    UI::CalendarModel * model;
+    QList<UI::CalendarDay *> selectedItems;
+    UI::CalendarDay * lastSelected;
     
     SelectionManager * const q_ptr;
 
     Q_DISABLE_COPY(SelectionManagerPrivate);
 
 public Q_SLOTS:
+
+    void OnWidgetClicked();
 
 };
 

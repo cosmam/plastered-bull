@@ -6,6 +6,7 @@
 namespace UI
 {
 
+class CalendarModel;
 class SelectionManagerPrivate;
 
 class SelectionManager : public QObject
@@ -17,9 +18,15 @@ public:
     explicit SelectionManager(QObject *parent = 0);
     ~SelectionManager();
     
+    void ClearData();
+
+    void SetModel(UI::CalendarModel * model);
+
 public Q_SLOTS:
 
 Q_SIGNALS:
+
+    void enableUpdates(bool);
 
 private:
 

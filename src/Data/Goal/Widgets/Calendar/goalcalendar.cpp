@@ -2,10 +2,12 @@
 #include "goalcalendar_p.h"
 #include "ui_goalcalendar.h"
 
+#include "calendarmodel.h"
 #include "goal.h"
 #include "goalfactory.h"
 #include "goaltypes.h"
 #include "goalwidgetbase.h"
+#include "selectionmanager.h"
 
 #include <QDialog>
 #include <QVBoxLayout>
@@ -63,6 +65,8 @@ void GoalCalendar::AddGoal( Data::Goal * goal )
 
 GoalCalendarPrivate::GoalCalendarPrivate(GoalCalendar *parent) :
     QObject(parent),
+    model(new UI::CalendarModel(parent)),
+    manager(new UI::SelectionManager(parent)),
     ui(new Ui::GoalCalendar),
     q_ptr(parent)
 {
@@ -71,6 +75,9 @@ GoalCalendarPrivate::GoalCalendarPrivate(GoalCalendar *parent) :
     ui->month_ComboBox->setCurrentIndex( QDate::currentDate().month() - 1 );
     ui->year_ComboBox->setCurrentIndex( QDate::currentDate().year() -
                                         ui->year_ComboBox->itemText(0).toInt() );
+
+    PopulateModel();
+    manager->SetModel(model);
 
     MakeConnections();
 }
@@ -97,6 +104,9 @@ void GoalCalendarPrivate::MakeConnections()
              this, SLOT(OnWeekGoalClicked()));
     connect( ui->btn_YearGoal, SIGNAL(clicked()),
              this, SLOT(OnYearGoalClicked()));
+
+    connect( manager, SIGNAL(enableUpdates(bool)),
+             this, SLOT(SetUpdatesEnabled(bool)));
 }
 
 void GoalCalendarPrivate::MakeGoalConnections( Data::Goal * goal )
@@ -124,12 +134,18 @@ void GoalCalendarPrivate::OnDestroyed( QObject * object )
 
 void GoalCalendarPrivate::OnMonthChanged( int month )
 {
+    manager->ClearData();
     ui->calendarMonth->SetMonth( Time::ToMonth( month + 1 ) );
+    PopulateModel();
+    manager->SetModel(model);
 }
 
 void GoalCalendarPrivate::OnYearChanged( QString year )
 {
+    manager->ClearData();
     ui->calendarMonth->SetYear( year.toInt() );
+    PopulateModel();
+    manager->SetModel(model);
 }
 
 void GoalCalendarPrivate::OnCustomGoalClicked()
@@ -232,4 +248,16 @@ void GoalCalendarPrivate::CreateDialog( Data::Goal * goal )
 void GoalCalendarPrivate::OnDialogCanceled()
 {
     delete newGoal;
+}
+
+void GoalCalendarPrivate::PopulateModel()
+{
+    model->SetCalendarReference(ui->calendarMonth);
+}
+
+void GoalCalendarPrivate::SetUpdatesEnabled(bool enabled)
+{
+    Q_Q(UI::GoalCalendar);
+
+    q->setUpdatesEnabled(enabled);
 }

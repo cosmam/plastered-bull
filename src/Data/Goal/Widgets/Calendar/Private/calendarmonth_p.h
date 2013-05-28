@@ -31,6 +31,8 @@ public:
 
     Time::Month month;
     int year;
+    int weeks;
+    int dayOffset;
 
     QList<UI::CalendarDay *> m_days;
     Ui::CalendarMonth * const m_ui;

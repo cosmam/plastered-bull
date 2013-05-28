@@ -19,9 +19,10 @@ namespace Data
 namespace UI
 {
 
+class CalendarModel;
 class GoalCalendar;
-
 class GoalWidgetBase;
+class SelectionManager;
 
 class GoalCalendarPrivate : public QObject
 {
@@ -36,9 +37,13 @@ public:
     void MakeConnections();
     void CreateDialog( Data::Goal * goal );
 
+    void PopulateModel();
+
     QList<Data::Goal *> goals;
     QPointer<QDialog> goalDialog;
     QPointer<Data::Goal> newGoal;
+    UI::CalendarModel * model;
+    UI::SelectionManager * manager;
 
     Ui::GoalCalendar * const ui;
     GoalCalendar * const q_ptr;
@@ -59,6 +64,8 @@ public Q_SLOTS:
     void OnYearGoalClicked();
 
     void OnDialogCanceled();
+
+    void SetUpdatesEnabled(bool enabled);
 };
 
 }

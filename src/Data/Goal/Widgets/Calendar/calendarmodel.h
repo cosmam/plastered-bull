@@ -6,7 +6,9 @@
 namespace UI
 {
 
+class CalendarDay;
 class CalendarModelPrivate;
+class CalendarMonth;
 
 class CalendarModel : public QObject
 {
@@ -16,7 +18,14 @@ class CalendarModel : public QObject
 public:
     explicit CalendarModel(QObject *parent = 0);
     ~CalendarModel();
-    
+
+    void SetCalendarReference(UI::CalendarMonth * month);
+
+    UI::CalendarDay * Day(int row, int col) const;
+    QList<UI::CalendarDay *> Range(UI::CalendarDay * start, UI::CalendarDay * end) const;
+
+    int Rows() const;
+
 public Q_SLOTS:
 
 Q_SIGNALS:

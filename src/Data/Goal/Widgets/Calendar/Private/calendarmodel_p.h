@@ -1,11 +1,13 @@
 #ifndef CALENDARMODEL_P_H
 #define CALENDARMODEL_P_H
 
+#include <QList>
 #include <QObject>
 
 namespace UI
 {
 
+class CalendarDay;
 class CalendarModel;
 
 class CalendarModelPrivate : public QObject
@@ -16,7 +18,13 @@ class CalendarModelPrivate : public QObject
 public:
     explicit CalendarModelPrivate(CalendarModel *parent);
 	~CalendarModelPrivate();
-    
+
+    void ClearData();
+
+    bool IsValid(int row, int col) const;
+
+    QList<UI::CalendarDay *> m_days;
+    int m_rows;
     CalendarModel * const q_ptr;
 
     Q_DISABLE_COPY(CalendarModelPrivate);

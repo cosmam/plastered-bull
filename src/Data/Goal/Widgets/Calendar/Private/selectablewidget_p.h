@@ -2,6 +2,7 @@
 #define SELECTABLEWIDGET_P_H
 
 #include <QObject>
+#include <QPoint>
 
 namespace UI
 {
@@ -19,6 +20,10 @@ public:
     virtual ~SelectableWidgetPrivate() {};
 
     virtual void init();
+
+    QPoint m_pressPoint;
+    bool m_selected;
+    bool m_selectable;
 
     SelectableWidget * q_ptr;
 
