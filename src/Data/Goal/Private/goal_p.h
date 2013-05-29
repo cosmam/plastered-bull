@@ -8,6 +8,7 @@
 #include "criteria.h"
 
 #include <QColor>
+#include <QPointer>
 #include <QString>
 
 namespace UI
@@ -35,7 +36,7 @@ public:
 
     QColor color;
     QString name;
-    Data::Criteria criteria;
+    QPointer<Data::Criteria> criteria;
 
     Q_DISABLE_COPY(GoalPrivate);
 

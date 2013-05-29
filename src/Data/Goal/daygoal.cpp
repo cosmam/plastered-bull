@@ -115,7 +115,7 @@ QDataStream & operator<<(QDataStream & out, const DayGoal & goal)
 {
     out << goal.name();
     out << goal.color();
-    out << goal.criteria();
+//    out << goal.criteria();
     out << goal.date();
 
     return out;
@@ -125,17 +125,17 @@ QDataStream & operator>>(QDataStream & in, DayGoal & goal)
 {
     QString name;
     QColor color;
-    Data::Criteria criteria;
+//    Data::Criteria criteria;
     QDate date;
 
     in >> name;
     in >> color;
-    in >> criteria;
+//    in >> criteria;
     in >> date;
 
     goal.setName( name );
     goal.setColor( color );
-    goal.setCriteria( criteria );
+//    goal.setCriteria( criteria );
     goal.setDate( date );
 
     return in;

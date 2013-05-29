@@ -45,14 +45,19 @@ QString Goal::name() const
     return d->name;
 }
 
-void Goal::setCriteria( const Data::Criteria & criteria )
+void Goal::setCriteria( Data::Criteria * criteria )
 {
     Q_D(Data::Goal);
-    d->criteria = criteria;
-    criteriaChanged( criteria );
+    if( d->criteria != criteria ) {
+        if( d->criteria != NULL ) {
+            delete d->criteria;
+        }
+        d->criteria = criteria;
+        criteriaChanged( criteria );
+    }
 }
 
-Data::Criteria Goal::criteria() const
+const Data::Criteria * Goal::criteria() const
 {
     Q_D(const Data::Goal);
     return d->criteria;

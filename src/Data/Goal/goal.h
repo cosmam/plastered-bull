@@ -34,8 +34,8 @@ public:
     void setName( const QString & name );
     QString name() const;
 
-    void setCriteria( const Data::Criteria & criteria );
-    Data::Criteria criteria() const;
+    void setCriteria( Data::Criteria * criteria );
+    const Data::Criteria * criteria() const;
 		
     virtual UI::GoalWidgetBase * CreateWidget() = 0;
 
@@ -47,7 +47,7 @@ Q_SIGNALS:
 
 	void colorChanged( QColor );
     void nameChanged( QString );
-	void criteriaChanged( Data::Criteria );
+    void criteriaChanged( Data::Criteria * );
 	void goalChanged( Data::Goal * );
 
 protected:

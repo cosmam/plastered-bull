@@ -139,7 +139,7 @@ QDataStream & operator<<(QDataStream & out, const CustomGoal & goal)
 {
     out << goal.name();
     out << goal.color();
-    out << goal.criteria();
+//    out << goal.criteria();
     out << goal.startDate();
     out << quint32( goal.duration() );
 
@@ -150,19 +150,19 @@ QDataStream & operator>>(QDataStream & in, CustomGoal & goal)
 {
     QString name;
     QColor color;
-    Data::Criteria criteria;
+//    Data::Criteria criteria;
     QDate date;
     quint32 duration;
 
     in >> name;
     in >> color;
-    in >> criteria;
+//    in >> criteria;
     in >> date;
     in >> duration;
 
     goal.setName( name );
     goal.setColor( color );
-    goal.setCriteria( criteria );
+//    goal.setCriteria( criteria );
     goal.setStartDate( date );
     goal.setDuration( int(duration) );
 

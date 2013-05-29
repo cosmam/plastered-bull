@@ -119,7 +119,7 @@ QDataStream & operator<<(QDataStream & out, const WeekGoal & goal)
 {
     out << goal.name();
     out << goal.color();
-    out << goal.criteria();
+//    out << goal.criteria();
     out << goal.startDate();
 
     return out;
@@ -129,17 +129,17 @@ QDataStream & operator>>(QDataStream & in, WeekGoal & goal)
 {
     QString name;
     QColor color;
-    Data::Criteria criteria;
+//    Data::Criteria criteria;
     QDate date;
 
     in >> name;
     in >> color;
-    in >> criteria;
+//    in >> criteria;
     in >> date;
 
     goal.setName( name );
     goal.setColor( color );
-    goal.setCriteria( criteria );
+//    goal.setCriteria( criteria );
     goal.setStartDate( date );
 
     return in;

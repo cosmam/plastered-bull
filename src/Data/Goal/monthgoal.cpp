@@ -141,7 +141,7 @@ QDataStream & operator<<(QDataStream & out, const MonthGoal & goal)
 {
     out << goal.name();
     out << goal.color();
-    out << goal.criteria();
+//    out << goal.criteria();
     out << qint32( goal.month() );
     out << qint32( goal.year() );
 
@@ -152,19 +152,19 @@ QDataStream & operator>>(QDataStream & in, MonthGoal & goal)
 {
     QString name;
     QColor color;
-    Data::Criteria criteria;
+//    Data::Criteria criteria;
     Time::Month month;
     qint32 year;
 
     in >> name;
     in >> color;
-    in >> criteria;
+//    in >> criteria;
     in >> month;
     in >> year;
 
     goal.setName( name );
     goal.setColor( color );
-    goal.setCriteria( criteria );
+//    goal.setCriteria( criteria );
     goal.setMonth( month );
     goal.setYear( int(year) );
 

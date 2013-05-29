@@ -14,6 +14,10 @@ TEMPLATE = app
 INCLUDEPATH +=  src \
     src/Data \
     src/Data/Private \
+    src/Data/Criteria \
+    src/Data/Criteria/Private \
+    src/Data/Criteria/Widgets \
+    src/Data/Criteria/Widgets/Private \
     src/Data/Goal \
     src/Data/Goal/Private \
     src/Data/Goal/Widgets \
@@ -24,7 +28,12 @@ INCLUDEPATH +=  src \
 SOURCES += src/main.cpp\
     src/mainwindow.cpp \
     src/timefunctions.cpp \
-    src/Data/criteria.cpp \
+    src/widgetfunctions.cpp \
+    src/Data/challenge.cpp \
+    src/Data/datastore.cpp \
+    src/Data/Criteria/wordscriteria.cpp \
+    src/Data/Criteria/pagescriteria.cpp \
+    src/Data/Criteria/criteria.cpp \
     src/Data/Goal/yeargoal.cpp \
     src/Data/Goal/weekgoal.cpp \
     src/Data/Goal/monthgoal.cpp \
@@ -38,7 +47,6 @@ SOURCES += src/main.cpp\
     src/Data/Goal/Widgets/daygoalwidget.cpp \
     src/Data/Goal/Widgets/customgoalwidget.cpp \
     src/Data/Goal/Widgets/goalwidgetbase.cpp \
-    src/Data/datastore.cpp \
     src/Data/Goal/Widgets/Calendar/goalcalendar.cpp \
     src/Data/Goal/Widgets/Calendar/calendarday.cpp \
     src/Data/Goal/Widgets/Calendar/calendarmonth.cpp \
@@ -47,12 +55,23 @@ SOURCES += src/main.cpp\
     src/Data/Goal/Widgets/Calendar/goalcalendaritem.cpp \
     src/Data/Goal/Widgets/Calendar/calendarmodel.cpp \
     src/Data/Goal/Widgets/Calendar/calendargoal.cpp \
-    src/Data/challenge.cpp \
-    src/widgetfunctions.cpp
+    src/Data/Criteria/Widgets/wordscriteriawidget.cpp \
+    src/Data/Criteria/Widgets/pagescriteriawidget.cpp \
+    src/Data/Criteria/Widgets/criteriawidgetbase.cpp
 
 HEADERS  += src/mainwindow.h \
+    src/commontypes.h \
     src/timefunctions.h \
-    src/Data/criteria.h \
+    src/widgetfunctions.h \
+    src/Data/challenge.h \
+    src/Data/datastore.h \
+    src/Data/Private/challenge_p.h \
+    src/Data/Criteria/wordscriteria.h \
+    src/Data/Criteria/pagescriteria.h \
+    src/Data/Criteria/criteria.h \
+    src/Data/Criteria/Private/wordscriteria_p.h \
+    src/Data/Criteria/Private/pagescriteria_p.h \
+    src/Data/Criteria/Private/criteria_p.h \
     src/Data/Goal/goal.h \
     src/Data/Goal/daygoal.h \
     src/Data/Goal/yeargoal.h \
@@ -66,14 +85,13 @@ HEADERS  += src/mainwindow.h \
     src/Data/Goal/Widgets/daygoalwidget.h \
     src/Data/Goal/Widgets/customgoalwidget.h \
     src/Data/Goal/Widgets/goalwidgetbase.h \
-    src/commontypes.h \
-    src/Data/datastore.h \
     src/Data/Goal/Widgets/Calendar/goalcalendar.h \   
     src/Data/Goal/Private/yeargoal_p.h \
     src/Data/Goal/Private/weekgoal_p.h \
     src/Data/Goal/Private/monthgoal_p.h \
     src/Data/Goal/Private/daygoal_p.h \
     src/Data/Goal/Private/customgoal_p.h \
+    src/Data/Goal/Private/goal_p.h \
     src/Data/Goal/Widgets/Calendar/Private/goalcalendar_p.h \
     src/Data/Goal/Widgets/Calendar/calendarday.h \
     src/Data/Goal/Widgets/Calendar/Private/calendarday_p.h \
@@ -94,10 +112,11 @@ HEADERS  += src/mainwindow.h \
     src/Data/Goal/Widgets/Calendar/calendarmodel.h \
     src/Data/Goal/Widgets/Calendar/calendargoal.h \
     src/Data/Goal/Widgets/Calendar/Private/calendargoal_p.h \
-    src/Data/challenge.h \
-    src/Data/Private/challenge_p.h \
-    src/Data/Goal/Private/goal_p.h \
-    src/widgetfunctions.h
+    src/Data/Criteria/Widgets/wordscriteriawidget.h \
+    src/Data/Criteria/Widgets/pagescriteriawidget.h \
+    src/Data/Criteria/Widgets/criteriawidgetbase.h \
+    src/Data/Criteria/Widgets/Private/wordscriteriawidget_p.h \
+    src/Data/Criteria/Widgets/Private/pagescriteriawidget_p.h
 	
 FORMS    += src/mainwindow.ui \
     src/Data/Goal/Widgets/yeargoalwidget.ui \
@@ -108,4 +127,6 @@ FORMS    += src/mainwindow.ui \
     src/Data/Goal/Widgets/Calendar/goalcalendar.ui \
     src/Data/Goal/Widgets/Calendar/calendarday.ui \
     src/Data/Goal/Widgets/Calendar/calendarmonth.ui \
-    src/Data/Goal/Widgets/Calendar/calendargoal.ui
+    src/Data/Goal/Widgets/Calendar/calendargoal.ui \
+    src/Data/Criteria/Widgets/wordscriteriawidget.ui \
+    src/Data/Criteria/Widgets/pagescriteriawidget.ui
