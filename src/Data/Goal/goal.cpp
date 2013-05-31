@@ -45,23 +45,23 @@ QString Goal::name() const
     return d->name;
 }
 
-void Goal::setCriteria( Data::Criteria * criteria )
-{
-    Q_D(Data::Goal);
-    if( d->criteria != criteria ) {
-        if( d->criteria != NULL ) {
-            delete d->criteria;
-        }
-        d->criteria = criteria;
-        criteriaChanged( criteria );
-    }
-}
+//void Goal::setCriteria( Data::Criteria * criteria )
+//{
+//    Q_D(Data::Goal);
+//    if( d->criteria != criteria ) {
+//        if( d->criteria != NULL ) {
+//            delete d->criteria;
+//        }
+//        d->criteria = criteria;
+//        criteriaChanged( criteria );
+//    }
+//}
 
-const Data::Criteria * Goal::criteria() const
-{
-    Q_D(const Data::Goal);
-    return d->criteria;
-}
+//const Data::Criteria * Goal::criteria() const
+//{
+//    Q_D(const Data::Goal);
+//    return d->criteria;
+//}
 
 ID_t Goal::id() const
 {

@@ -4,9 +4,6 @@
 #include "challenge_p.h"
 #include "goal.h"
 
-#include "commontypes.h"
-#include "criteria.h"
-
 #include <QColor>
 #include <QPointer>
 #include <QString>
@@ -19,6 +16,7 @@ namespace UI
 namespace Data
 {
 
+class Criteria;
 class Goal;
 
 class GoalPrivate : public ChallengePrivate
@@ -36,7 +34,7 @@ public:
 
     QColor color;
     QString name;
-    QPointer<Data::Criteria> criteria;
+//    QPointer<Data::Criteria> criteria;
 
     Q_DISABLE_COPY(GoalPrivate);
 

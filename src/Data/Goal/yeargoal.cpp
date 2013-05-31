@@ -31,7 +31,7 @@ QDateTime YearGoal::end() const
 	
 void YearGoal::setYear( int year )
 {
-    if( year > 0 ) {
+    if( QDate(year,1,1).isValid() ) {
         Q_D(Data::YearGoal);
         d->year = year;
         emit yearChanged( d->year );

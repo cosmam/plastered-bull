@@ -34,8 +34,8 @@ public:
     void setName( const QString & name );
     QString name() const;
 
-    void setCriteria( Data::Criteria * criteria );
-    const Data::Criteria * criteria() const;
+//    void setCriteria( Data::Criteria * criteria );
+//    const Data::Criteria * criteria() const;
 		
     virtual UI::GoalWidgetBase * CreateWidget() = 0;
 

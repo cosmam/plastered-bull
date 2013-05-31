@@ -22,8 +22,8 @@ WeekGoal::WeekGoal(QObject *parent) :
 	         this, SIGNAL( colorChanged( QColor ) ) );
     connect( d->goal, SIGNAL( nameChanged( QString ) ),
 	         this, SIGNAL( nameChanged( QString ) ) );
-    connect( d->goal, SIGNAL( criteriaChanged( Data::Criteria ) ),
-	         this, SIGNAL( criteriaChanged( Data::Criteria ) ) );
+    connect( d->goal, SIGNAL( criteriaChanged( Data::Criteria * ) ),
+             this, SIGNAL( criteriaChanged( Data::Criteria * ) ) );
     connect( d->goal, SIGNAL( startDateChanged( QDate ) ),
              this, SIGNAL( startDateChanged( QDate ) ) );
 }

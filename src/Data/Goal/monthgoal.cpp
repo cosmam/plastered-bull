@@ -52,8 +52,8 @@ Time::Month MonthGoal::month() const
 	
 void MonthGoal::setYear( int year )
 {
-    if( year > 0 ) {
-        Q_D(Data::MonthGoal);
+    Q_D(Data::MonthGoal);
+    if( QDate(year,Time::ToInt(d->month),1).isValid() ) {
         d->year = year;
         emit yearChanged( d->year );
     }
