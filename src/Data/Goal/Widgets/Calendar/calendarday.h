@@ -3,39 +3,41 @@
 
 #include "goalcalendaritem.h"
 
-namespace Data
-{
+namespace Data {
     class Goal;
 }
 
-namespace UI
-{
+namespace UI {
 
-class CalendarDayPrivate;
+    class CalendarDayPrivate;
 
-class CalendarDay : public GoalCalendarItem
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(UI::CalendarDay);
-    
-public:
-    explicit CalendarDay(QWidget *parent = 0);
-    ~CalendarDay();
+    class CalendarDay : public GoalCalendarItem
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(UI::CalendarDay)
+        Q_DISABLE_COPY(CalendarDay)
 
-public Q_SLOTS:
+    public:
 
-    void SetDay( int day );
+        /// Defaults constructor
+        explicit CalendarDay(QWidget *parent = 0);
 
-    void AddGoal( Data::Goal * goal, int index = -1 );
+        /// Destructor
+        ~CalendarDay();
 
-protected:
+    public Q_SLOTS:
 
-    void resizeEvent(QResizeEvent *);
+        /// Sets the day
+        void SetDay( int day );
 
-private:
+        /// Adds a goal to the day
+        void AddGoal( Data::Goal * goal, int index = -1 );
 
-    Q_DISABLE_COPY(CalendarDay);
-};
+    protected:
+
+        /// Reimplemented resize event
+        void resizeEvent(QResizeEvent *);
+    };
 
 }
 

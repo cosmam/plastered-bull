@@ -3,8 +3,9 @@
 
 class QWidget;
 
-namespace Widgets
-{
+namespace Widgets {
+
+    /// Function that repolishes a gi ven widget
     void Repolish(QWidget * widget);
 }
 

@@ -5,38 +5,38 @@
 
 class QColorDialog;
 
-namespace Ui 
-{
-	class PagesCriteriaWidget;
+namespace Ui {
+    class PagesCriteriaWidget;
 }
 
-namespace Data
-{
+namespace Data {
     class PagesCriteria;
 }
 
-namespace UI
-{
+namespace UI {
 
-class PagesCriteriaWidget;
+    class PagesCriteriaWidget;
 
-class PagesCriteriaWidgetPrivate : public QObject
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(UI::PagesCriteriaWidget);
+    class PagesCriteriaWidgetPrivate : public QObject
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(UI::PagesCriteriaWidget)
+        Q_DISABLE_COPY(PagesCriteriaWidgetPrivate)
 
-public:
-    explicit PagesCriteriaWidgetPrivate(PagesCriteriaWidget *parent);
-    ~PagesCriteriaWidgetPrivate();
+    public:
 
-    Ui::PagesCriteriaWidget * const ui;
-    UI::PagesCriteriaWidget * const q_ptr;
+        /// Default constructor
+        explicit PagesCriteriaWidgetPrivate(PagesCriteriaWidget *parent);
 
-    Q_DISABLE_COPY(PagesCriteriaWidgetPrivate);
+        /// Destructor
+        ~PagesCriteriaWidgetPrivate();
 
-public Q_SLOTS:
+        Ui::PagesCriteriaWidget * const ui;
+        UI::PagesCriteriaWidget * const q_ptr;
 
-};
+    public Q_SLOTS:
+
+    };
 
 }
 

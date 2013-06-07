@@ -5,40 +5,53 @@
 
 #include <QDate>
 
-namespace Data
-{
+namespace Data {
 
-class DayGoalPrivate;
+    class DayGoalPrivate;
 
-class DayGoal : public Goal
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(Data::DayGoal);
-    Q_DISABLE_COPY(DayGoal);
+    class DayGoal : public Goal
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(Data::DayGoal)
+        Q_DISABLE_COPY(DayGoal)
 
-public:
-    explicit DayGoal(QObject *parent = 0);
-    ~DayGoal();
-	
-    QDateTime start() const;
-	QDateTime end() const;
+    public:
 
-	void setDate( const QDate & date );
-	QDate date() const;
-	
-    UI::GoalWidgetBase * CreateWidget();
-	
-public Q_SLOTS:
-    
-Q_SIGNALS:
+        /// Default constructor
+        explicit DayGoal(QObject *parent = 0);
 
-    void dateChanged( QDate );
-};
+        /// Destructor
+        ~DayGoal();
+
+        /// Gets the goal start datetime
+        QDateTime start() const;
+
+        /// Gets the goal end datetime
+        QDateTime end() const;
+
+        /// Sets the goal date
+        void setDate( const QDate & date );
+
+        /// Gets the goal date
+        QDate date() const;
+
+        /// Creates a goal widget from this goal
+        UI::GoalWidgetBase * CreateWidget();
+
+    public Q_SLOTS:
+
+    Q_SIGNALS:
+
+        /// Signal emitted on date changed
+        void dateChanged( QDate );
+    };
 
 }
 
+/// QDataStream output operator
 QDataStream & operator<<(QDataStream & out, const Data::DayGoal & goal);
 
+/// QDataStream input operator
 QDataStream & operator>>(QDataStream & in, Data::DayGoal & goal);
 
 #endif // DAYGOAL_H

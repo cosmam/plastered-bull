@@ -7,39 +7,46 @@
 #include <QObject>
 
 namespace Ui {
-class CalendarMonth;
+    class CalendarMonth;
 }
 
-namespace UI
-{
+namespace UI {
 
-class CalendarDay;
-class CalendarMonth;
+    class CalendarDay;
+    class CalendarMonth;
 
-class CalendarMonthPrivate : public QObject
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(UI::CalendarMonth);
+    class CalendarMonthPrivate : public QObject
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(UI::CalendarMonth)
+        Q_DISABLE_COPY(CalendarMonthPrivate)
 
-public:
-    explicit CalendarMonthPrivate(CalendarMonth *parent, const QDate & date = QDate::currentDate() );
-    ~CalendarMonthPrivate();
-    
-    void DrawCalendar();
-    void InitCreateObjects();
-    const QDate date() const;
+    public:
 
-    Time::Month month;
-    int year;
-    int weeks;
-    int dayOffset;
+        /// Default constructor
+        explicit CalendarMonthPrivate(CalendarMonth *parent, const QDate & date = QDate::currentDate() );
 
-    QList<UI::CalendarDay *> m_days;
-    Ui::CalendarMonth * const m_ui;
-    CalendarMonth * const q_ptr;
+        /// Destructor
+        ~CalendarMonthPrivate();
 
-    Q_DISABLE_COPY(CalendarMonthPrivate);
-};
+        /// Draws the calendar
+        void DrawCalendar();
+
+        /// Initializes the calendar objects
+        void InitCreateObjects();
+
+        /// Gets the date that represents this month
+        const QDate date() const;
+
+        Time::Month month;
+        int year;
+        int weeks;
+        int dayOffset;
+
+        QList<UI::CalendarDay *> m_days;
+        Ui::CalendarMonth * const m_ui;
+        CalendarMonth * const q_ptr;
+    };
 
 }
 

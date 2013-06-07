@@ -5,18 +5,40 @@
 
 using namespace UI;
 
+/**
+ * @author Cosmam
+ * @name SelectableWidget
+ * @namespace UI
+ * @brief The parent widget
+ * @param parent: The parent widget
+ **/
 SelectableWidget::SelectableWidget(QWidget *parent) :
     QWidget(parent),
     d_ptr( new SelectableWidgetPrivate )
 {
 }
 
+/**
+ * @author Cosmam
+ * @name SelectableWidget
+ * @namespace UI
+ * @brief Overloaded constructor for d-pointer initialization
+ * @param d: The d-pointer
+ * @param parent: The parent widget
+ **/
 SelectableWidget::SelectableWidget(SelectableWidgetPrivate & d, QWidget *parent) :
 	QWidget(parent),
 	d_ptr(&d)
 {
 }
 
+/**
+ * @author Cosmam
+ * @name setSelected
+ * @namespace UI
+ * @brief Sets whtether or not this is selected
+ * @param selected: Whether or not this is selected
+ **/
 void SelectableWidget::setSelected(bool selected)
 {
     Q_D(UI::SelectableWidget);
@@ -24,6 +46,13 @@ void SelectableWidget::setSelected(bool selected)
     d->m_selected = selected;
 }
 
+/**
+ * @author Cosmam
+ * @name isSelected
+ * @namespace UI
+ * @brief Gets whether or not this is selected
+ * @return Whether or not this is selected
+ **/
 bool SelectableWidget::isSelected() const
 {
     Q_D(const UI::SelectableWidget);
@@ -31,6 +60,13 @@ bool SelectableWidget::isSelected() const
     return d->m_selected;
 }
 
+/**
+ * @author Cosmam
+ * @name setSelectable
+ * @namespace UI
+ * @brief Sets whether or not this is selectable
+ * @param Whether or not this is selectable
+ **/
 void SelectableWidget::setSelectable(bool selectable)
 {
     Q_D(UI::SelectableWidget);
@@ -38,6 +74,13 @@ void SelectableWidget::setSelectable(bool selectable)
     d->m_selectable = selectable;
 }
 
+/**
+ * @author Cosmam
+ * @name isSelectable
+ * @namespace UI
+ * @brief Gets whether or not this is selectable
+ * @return Whether or not this is selectable
+ **/
 bool SelectableWidget::isSelectable() const
 {
     Q_D(const UI::SelectableWidget);
@@ -45,11 +88,25 @@ bool SelectableWidget::isSelectable() const
     return d->m_selectable;
 }
 
+/**
+ * @author Cosmam
+ * @name mouseMoveEvenet
+ * @namespace UI
+ * @brief Reimplemented mouse move event
+ * @param event:  The mouse move event
+ */
 void SelectableWidget::mouseMoveEvent( QMouseEvent * event )
 {
     Q_UNUSED(event);
 }
 
+/**
+ * @author Cosmam
+ * @name mousePressEvent
+ * @namespace UI
+ * @brief Reimplemented mouse press event
+ * @param event: The mouse press event
+ **/
 void SelectableWidget::mousePressEvent( QMouseEvent * event )
 {
     if( event->button() == Qt::LeftButton )
@@ -61,6 +118,13 @@ void SelectableWidget::mousePressEvent( QMouseEvent * event )
     }
 }
 
+/**
+ * @author Cosmam
+ * @name mouseReleaseEvent
+ * @namespace UI
+ * @brief Reimplemented mouse release event
+ * @param event: The mouse release event
+ **/
 void SelectableWidget::mouseReleaseEvent( QMouseEvent * event )
 {
     if( event->button() == Qt::LeftButton )
@@ -79,6 +143,12 @@ void SelectableWidget::mouseReleaseEvent( QMouseEvent * event )
 
 /**************** Private Class ***************/
 
+/**
+ * @author Cosmam
+ * @name SelectableWidgetPrivate
+ * @namespace UI
+ * @brief Default constructor
+ **/
 SelectableWidgetPrivate::SelectableWidgetPrivate() :
     QObject(),
     m_selected(false),
@@ -87,6 +157,12 @@ SelectableWidgetPrivate::SelectableWidgetPrivate() :
 {
 }
 
+/**
+ * @author Cosmam
+ * @name ~SelectableWidgetPrivate
+ * @namespace UI
+ * @brief Destructor
+ **/
 void SelectableWidgetPrivate::init()
 {
 

@@ -3,47 +3,54 @@
 
 #include <QWidget>
 
-namespace Data
-{
+namespace Data {
     class Goal;
 }
 
-namespace UI
-{
+namespace UI {
 
-class GoalCalendarPrivate;
+    class GoalCalendarPrivate;
 
-class GoalCalendar : public QWidget
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(UI::GoalCalendar);
-    
-public:
+    class GoalCalendar : public QWidget
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(UI::GoalCalendar)
+        Q_DISABLE_COPY(GoalCalendar)
 
-	enum ViewMode
-	{
-		DAY_VIEW_MODE = 0,
-		WEEK_VIEW_MODE,
-		MONTH_VIEW_MODE,
-		YEAR_VIEW_MODE
-	};
+    public:
 
-    explicit GoalCalendar(QWidget *parent = 0);
-    ~GoalCalendar();
-    
-    void SetGoals( const QList<Data::Goal *> goals );
-	
-public Q_SLOTS:
+        enum ViewMode
+        {
+            DAY_VIEW_MODE = 0,
+            WEEK_VIEW_MODE,
+            MONTH_VIEW_MODE,
+            YEAR_VIEW_MODE
+        };
 
-	void RemoveGoal( Data::Goal * goal );	
-	void UpdateGoal( Data::Goal * goal );
-	void AddGoal( Data::Goal * goal );
-	
-private:
+        /// Default constructor
+        explicit GoalCalendar(QWidget *parent = 0);
 
-    Q_DISABLE_COPY(GoalCalendar);
-    GoalCalendarPrivate * const d_ptr;
-};
+        /// Destructor
+        ~GoalCalendar();
+
+        /// Sets the list of goals
+        void SetGoals( const QList<Data::Goal *> goals );
+
+    public Q_SLOTS:
+
+        /// Slot to remove a goal
+        void RemoveGoal( Data::Goal * goal );
+
+        /// Slot to update a goal
+        void UpdateGoal( Data::Goal * goal );
+
+        /// Slot to add a goal
+        void AddGoal( Data::Goal * goal );
+
+    private:
+
+        GoalCalendarPrivate * const d_ptr;
+    };
 
 }
 

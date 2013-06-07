@@ -3,6 +3,8 @@
 #include "customgoal.h"
 #include "timefunctions.h"
 
+using namespace Test;
+
 CustomGoalTest::CustomGoalTest(QObject *parent) :
     QObject(parent)
 {

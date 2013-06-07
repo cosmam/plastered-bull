@@ -3,38 +3,46 @@
 
 #include <QObject>
 
-namespace UI
-{
+namespace UI {
 
-class CalendarDay;
-class CalendarModelPrivate;
-class CalendarMonth;
+    class CalendarDay;
+    class CalendarModelPrivate;
+    class CalendarMonth;
 
-class CalendarModel : public QObject
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(UI::CalendarModel);
+    class CalendarModel : public QObject
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(UI::CalendarModel)
+        Q_DISABLE_COPY(CalendarModel)
 
-public:
-    explicit CalendarModel(QObject *parent = 0);
-    ~CalendarModel();
+    public:
 
-    void SetCalendarReference(UI::CalendarMonth * month);
+        /// Default constructor
+        explicit CalendarModel(QObject *parent = 0);
 
-    UI::CalendarDay * Day(int row, int col) const;
-    QList<UI::CalendarDay *> Range(UI::CalendarDay * start, UI::CalendarDay * end) const;
+        /// Destructor
+        ~CalendarModel();
 
-    int Rows() const;
+        /// Sets the calendar reference
+        void SetCalendarReference(UI::CalendarMonth * month);
 
-public Q_SLOTS:
+        /// Gets the calendar day at the given location
+        UI::CalendarDay * Day(int row, int col) const;
 
-Q_SIGNALS:
+        /// Gets the range of calendar days between the start and end days
+        QList<UI::CalendarDay *> Range(UI::CalendarDay * start, UI::CalendarDay * end) const;
 
-private:
+        /// Gets the number of rows
+        int Rows() const;
 
-    Q_DISABLE_COPY(CalendarModel);
-    CalendarModelPrivate * const d_ptr;
-};
+    public Q_SLOTS:
+
+    Q_SIGNALS:
+
+    private:
+
+        CalendarModelPrivate * const d_ptr;
+    };
 
 }
 

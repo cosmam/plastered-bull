@@ -4,34 +4,38 @@
 #include <QList>
 #include <QObject>
 
-namespace UI
-{
+namespace UI {
 
-class CalendarDay;
-class CalendarModel;
+    class CalendarDay;
+    class CalendarModel;
 
-class CalendarModelPrivate : public QObject
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(UI::CalendarModel);
+    class CalendarModelPrivate : public QObject
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(UI::CalendarModel)
+        Q_DISABLE_COPY(CalendarModelPrivate)
 
-public:
-    explicit CalendarModelPrivate(CalendarModel *parent);
-	~CalendarModelPrivate();
+    public:
 
-    void ClearData();
+        /// Default constructor
+        explicit CalendarModelPrivate(CalendarModel *parent);
 
-    bool IsValid(int row, int col) const;
+        /// Destructor
+        ~CalendarModelPrivate();
 
-    QList<UI::CalendarDay *> m_days;
-    int m_rows;
-    CalendarModel * const q_ptr;
+        /// Clears the data for this widget
+        void ClearData();
 
-    Q_DISABLE_COPY(CalendarModelPrivate);
+        /// Determines if the data at the given position is valid
+        bool IsValid(int row, int col) const;
 
-public Q_SLOTS:
+        QList<UI::CalendarDay *> m_days;
+        int m_rows;
+        CalendarModel * const q_ptr;
 
-};
+    public Q_SLOTS:
+
+    };
 
 }
 

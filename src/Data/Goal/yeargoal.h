@@ -3,40 +3,53 @@
 
 #include "goal.h"
 
-namespace Data
-{
+namespace Data {
 
-class YearGoalPrivate;
+    class YearGoalPrivate;
 
-class YearGoal : public Goal
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(Data::YearGoal);
-    Q_DISABLE_COPY(YearGoal);
+    class YearGoal : public Goal
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(Data::YearGoal)
+        Q_DISABLE_COPY(YearGoal)
 
-public:
-    explicit YearGoal(QObject *parent = 0);
-    ~YearGoal();
-	
-	QDateTime start() const;
-	QDateTime end() const;
+    public:
 
-	void setYear( int year );
-	int year() const;
+        /// Default constructor
+        explicit YearGoal(QObject *parent = 0);
 
-    UI::GoalWidgetBase * CreateWidget();
+        /// Destrucotr
+        ~YearGoal();
 
-public Q_SLOTS:
-    
-Q_SIGNALS:
+        /// Gets the start datetime
+        QDateTime start() const;
 
-   	void yearChanged( int ); 
-};
+        /// Gets the end datetime
+        QDateTime end() const;
+
+        /// Sets the goal year
+        void setYear( int year );
+
+        /// Gets the goal year
+        int year() const;
+
+        /// Signal emitted on start date changed
+        UI::GoalWidgetBase * CreateWidget();
+
+    public Q_SLOTS:
+
+    Q_SIGNALS:
+
+        /// Signal emitted on year changed
+        void yearChanged( int );
+    };
 
 }
 
+/// QDataStream output operator
 QDataStream & operator<<(QDataStream & out, const Data::YearGoal & goal);
 
+/// QDataStream input operator
 QDataStream & operator>>(QDataStream & in, Data::YearGoal & goal);
 
 #endif // YEARGOAL_H

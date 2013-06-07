@@ -8,51 +8,70 @@
 class QColorDialog;
 
 namespace Ui {
-class CustomGoalWidget;
+    class CustomGoalWidget;
 }
 
-namespace Data
-{
+namespace Data {
     class CustomGoal;
 }
 
-namespace UI
-{
+namespace UI {
 
-class CustomGoalWidget;
+    class CustomGoalWidget;
 
-class CustomGoalWidgetPrivate : public QObject
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(UI::CustomGoalWidget);
+    class CustomGoalWidgetPrivate : public QObject
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(UI::CustomGoalWidget)
+        Q_DISABLE_COPY(CustomGoalWidgetPrivate)
 
-public:
-    explicit CustomGoalWidgetPrivate(CustomGoalWidget *parent);
-    ~CustomGoalWidgetPrivate();
+    public:
 
-    QColor color;
-    QPointer<QColorDialog> colorDialog;
+        /// Default constructor
+        explicit CustomGoalWidgetPrivate(CustomGoalWidget *parent);
 
-    void SetupWidget( const Data::CustomGoal * goal );
+        /// Destructor
+        ~CustomGoalWidgetPrivate();
 
-    QString Name() const;
-    QDate StartDate() const;
-    int Duration() const;
+        /// Sets up this widget based on the goal data
+        void SetupWidget( const Data::CustomGoal * goal );
 
-    Ui::CustomGoalWidget * const ui;
-    UI::CustomGoalWidget * const q_ptr;
+        /// Gets the goal name
+        QString Name() const;
 
-    Q_DISABLE_COPY(CustomGoalWidgetPrivate);
+        /// Gets the goal start date
+        QDate StartDate() const;
 
-public Q_SLOTS:
+        /// Gets the goal duration
+        int Duration() const;
 
-    void OnColorSelected( const QColor & inColor );
-    void OnStartDateChanged( const QDate & date );
+        /// Sets the widget data to defaults
+        void SetToDefaults();
 
-    void OnColorButtonClicked();
-    void OnCancelClicked();
-    void OnAcceptClicked();
-};
+        QColor color;
+        QPointer<QColorDialog> colorDialog;
+
+        Ui::CustomGoalWidget * const ui;
+        UI::CustomGoalWidget * const q_ptr;
+
+
+    public Q_SLOTS:
+
+        /// Slot called on color selected
+        void OnColorSelected( const QColor & inColor );
+
+        /// Slot called on start date changed
+        void OnStartDateChanged( const QDate & date );
+
+        /// Slot called on color button clicked
+        void OnColorButtonClicked();
+
+        /// Slot called on cancel clicked
+        void OnCancelClicked();
+
+        /// Slot called on accept clicked
+        void OnAcceptClicked();
+    };
 
 }
 

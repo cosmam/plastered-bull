@@ -3,6 +3,8 @@
 #include "weekgoal.h"
 #include "timefunctions.h"
 
+using namespace Test;
+
 WeekGoalTest::WeekGoalTest(QObject *parent) :
     QObject(parent)
 {

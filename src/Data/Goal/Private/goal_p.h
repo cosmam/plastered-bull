@@ -5,42 +5,42 @@
 #include "goal.h"
 
 #include <QColor>
-#include <QPointer>
 #include <QString>
 
-namespace UI
-{
+namespace UI {
     class GoalWidgetBase;
 }
 
-namespace Data
-{
+namespace Data {
 
-class Criteria;
-class Goal;
+    class Criteria;
+    class Goal;
 
-class GoalPrivate : public ChallengePrivate
-{
-	Q_OBJECT
-    Q_DECLARE_PUBLIC(Data::Goal);
-    //TODO - declare properties
+    class GoalPrivate : public ChallengePrivate
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(Data::Goal)
+        //TODO - declare properties
 
-public:
+    public:
 
-    GoalPrivate();
-    virtual ~GoalPrivate() {};
-	
-    virtual void init();
+        /// Default constructor
+        GoalPrivate();
 
-    QColor color;
-    QString name;
-//    QPointer<Data::Criteria> criteria;
+        /// Virtual destructor
+        virtual ~GoalPrivate() {}
 
-    Q_DISABLE_COPY(GoalPrivate);
+        /// Virtual function to initialize this widget
+        virtual void init();
 
-public Q_SLOTS:
+        QColor color;
+        QString name;
 
-};
+        Q_DISABLE_COPY(GoalPrivate)
+
+    public Q_SLOTS:
+
+    };
 
 }
 

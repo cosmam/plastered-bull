@@ -4,34 +4,37 @@
 #include <QObject>
 #include <QPointer>
 
-namespace UI
-{
-	class CriteriaWidgetBase;
+namespace UI {
+    class CriteriaWidgetBase;
 }
 
-namespace Data
-{
+namespace Data {
 
-class Criteria;
+    class Criteria;
 
-class CriteriaPrivate : public QObject
-{
-	Q_OBJECT
-    Q_DECLARE_PUBLIC(Data::Criteria);
-    Q_DISABLE_COPY(CriteriaPrivate);
+    class CriteriaPrivate : public QObject
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(Data::Criteria)
+        Q_DISABLE_COPY(CriteriaPrivate)
 
-public:
-    explicit CriteriaPrivate();
-    virtual ~CriteriaPrivate() {};
-	
-    virtual void init();
+    public:
 
-	QPointer<UI::CriteriaWidgetBase> m_widget;
-    Criteria * q_ptr;
+        /// Default Constructor
+        explicit CriteriaPrivate();
 
-public Q_SLOTS:
+        /// Virtual destructor
+        virtual ~CriteriaPrivate() {}
 
-};
+        /// Virtual function to inititialize class
+        virtual void init();
+
+        QPointer<UI::CriteriaWidgetBase> m_widget;
+        Criteria * q_ptr;
+
+    public Q_SLOTS:
+
+    };
 
 }
 

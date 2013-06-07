@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>273</width>
-    <height>153</height>
+    <height>164</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -157,10 +157,10 @@
       <item row="3" column="2">
        <widget class="QSpinBox" name="year_SpinBox">
         <property name="minimum">
-         <number>2013</number>
+         <number>0</number>
         </property>
         <property name="maximum">
-         <number>2100</number>
+         <number>100</number>
         </property>
        </widget>
       </item>

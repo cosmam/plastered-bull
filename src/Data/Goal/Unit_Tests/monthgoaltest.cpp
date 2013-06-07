@@ -2,6 +2,8 @@
 
 #include "monthgoal.h"
 
+using namespace Test;
+
 MonthGoalTest::MonthGoalTest(QObject *parent) :
     QObject(parent)
 {

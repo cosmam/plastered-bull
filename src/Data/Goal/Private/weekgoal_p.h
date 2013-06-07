@@ -6,36 +6,40 @@
 
 #include <QPointer>
 
-namespace UI
-{
+namespace UI {
     class WeekGoalWidget;
 }
 
-namespace Data
-{
+namespace Data {
 
-class CustomGoal;
-class WeekGoal;
+    class CustomGoal;
+    class WeekGoal;
 
-class WeekGoalPrivate : public GoalPrivate
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(Data::WeekGoal);
-    Q_DISABLE_COPY(WeekGoalPrivate);
+    class WeekGoalPrivate : public GoalPrivate
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(Data::WeekGoal)
+        Q_DISABLE_COPY(WeekGoalPrivate)
 
-public:
-    explicit WeekGoalPrivate();
-    ~WeekGoalPrivate();
-    
-    void init();
+    public:
 
-    QPointer<CustomGoal> goal;
-    QPointer<UI::WeekGoalWidget> widget;
+        /// Default constructor
+        explicit WeekGoalPrivate();
 
-public Q_SLOTS:
+        /// Destructor
+        ~WeekGoalPrivate();
 
-    void WidgetChangesAccepted();
-};
+        /// Initializes this widget
+        void init();
+
+        QPointer<CustomGoal> goal;
+        QPointer<UI::WeekGoalWidget> widget;
+
+    public Q_SLOTS:
+
+        /// Slot called when the widget changes are accepted
+        void WidgetChangesAccepted();
+    };
 
 }
 

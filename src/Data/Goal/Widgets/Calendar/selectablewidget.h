@@ -3,43 +3,64 @@
 
 #include <QWidget>
 
-namespace UI
-{
+namespace UI {
 
-class SelectableWidgetPrivate;
+    class SelectableWidgetPrivate;
 
-class SelectableWidget : public QWidget
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(UI::SelectableWidget);
-    Q_DISABLE_COPY(SelectableWidget);
+    class SelectableWidget : public QWidget
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(UI::SelectableWidget)
+        Q_DISABLE_COPY(SelectableWidget)
 
-public:
-    explicit SelectableWidget(QWidget *parent = 0);
-    virtual ~SelectableWidget() {};
-    
-    void setSelected(bool selected);
-    bool isSelected() const;
+    public:
 
-    void setSelectable(bool selectable);
-    bool isSelectable() const;
+        /// Default constructor
+        explicit SelectableWidget(QWidget *parent = 0);
 
-public Q_SLOTS:
+        /// Virtual destructor
+        virtual ~SelectableWidget() {}
 
-Q_SIGNALS:
+        /// Sets whether or not this is selected
+        void setSelected(bool selected);
 
-    void widgetPressed();
-    void widgetReleased();
-    void widgetClicked();
+        /// Gets whether or not this is selected
+        bool isSelected() const;
 
-protected:
-    explicit SelectableWidget(SelectableWidgetPrivate & d, QWidget *parent = 0);
-    SelectableWidgetPrivate * const d_ptr;
+        /// Sets whether or not this is selectable
+        void setSelectable(bool selectable);
 
-    void mouseMoveEvent( QMouseEvent * event );
-    void mousePressEvent( QMouseEvent * event );
-    void mouseReleaseEvent( QMouseEvent * event );
-};
+        /// Gets whether or not this is selectable
+        bool isSelectable() const;
+
+    public Q_SLOTS:
+
+    Q_SIGNALS:
+
+        /// Signal emitted when the widget is pressed
+        void widgetPressed();
+
+        /// Signal emitted when the widget is released
+        void widgetReleased();
+
+        /// Signal emitted when the widget is clicked
+        void widgetClicked();
+
+    protected:
+
+        /// Overloaded constructor for d-pointer initialization
+        explicit SelectableWidget(SelectableWidgetPrivate & d, QWidget *parent = 0);
+        SelectableWidgetPrivate * const d_ptr;
+
+        /// Reimplemented mouse move event
+        void mouseMoveEvent( QMouseEvent * event );
+
+        /// Reimplemented mouse press event
+        void mousePressEvent( QMouseEvent * event );
+
+        /// Reimplemented mouse release event
+        void mouseReleaseEvent( QMouseEvent * event );
+    };
 
 }
 

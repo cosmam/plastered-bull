@@ -5,10 +5,10 @@
 #include <QPointer>
 #include <QtTest>
 
-namespace Data
+namespace Test
 {
-    class GoalMock;
-}
+
+class GoalMock;
 
 class GoalTest : public QObject
 {
@@ -22,7 +22,7 @@ class GoalTest : public QObject
     public slots:
 
     private:
-        QPointer<Data::GoalMock> m_goal;
+        QPointer<Test::GoalMock> m_goal;
 
     private Q_SLOTS:
 
@@ -36,5 +36,7 @@ class GoalTest : public QObject
         void TestColor_data();
         void TestColor();
 };
+
+}
 
 #endif // GOALTEST_H

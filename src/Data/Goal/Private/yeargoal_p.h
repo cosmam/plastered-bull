@@ -6,37 +6,43 @@
 
 #include <QPointer>
 
-namespace UI
-{
+namespace UI {
     class YearGoalWidget;
 }
 
-namespace Data
-{
+namespace Data {
 
-class Goal;
-class YearGoal;
+    class Goal;
+    class YearGoal;
 
-class YearGoalPrivate : public GoalPrivate
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(Data::YearGoal);
-    Q_DISABLE_COPY(YearGoalPrivate);
+    class YearGoalPrivate : public GoalPrivate
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(Data::YearGoal)
+        Q_DISABLE_COPY(YearGoalPrivate)
 
-public:
-    YearGoalPrivate();
-    ~YearGoalPrivate();
+    public:
 
-    void init();
+        /// Default constructor
+        YearGoalPrivate();
 
-    int year;
-    QPointer<UI::YearGoalWidget> widget;
+        /// Destructor
+        ~YearGoalPrivate();
 
-public Q_SLOTS:
+        /// Initializes this widget
+        void init();
 
-    void WidgetChangesAccepted();
-    void OnDataUpdated();
-};
+        int year;
+        QPointer<UI::YearGoalWidget> widget;
+
+    public Q_SLOTS:
+
+        /// Slot called when the widget changes are accepted
+        void WidgetChangesAccepted();
+
+        /// Slot called when the data is updated
+        void OnDataUpdated();
+    };
 
 }
 

@@ -3,31 +3,37 @@
 
 #include "criteriawidgetbase.h"
 
-namespace UI
-{
+namespace UI {
 
-class PagesCriteriaWidgetPrivate;
+    class PagesCriteriaWidgetPrivate;
 
-class PagesCriteriaWidget : public UI::CriteriaWidgetBase
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(UI::PagesCriteriaWidget);
-    
-public:
-    explicit PagesCriteriaWidget(QWidget * parent = NULL);
-    ~PagesCriteriaWidget();
+    class PagesCriteriaWidget : public UI::CriteriaWidgetBase
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(UI::PagesCriteriaWidget)
+        Q_DISABLE_COPY(PagesCriteriaWidget)
 
-    int Pages() const;
+    public:
 
-    void SetupWidget( const Data::Criteria * inCriteria );
+        /// Default constuctor
+        explicit PagesCriteriaWidget(QWidget * parent = NULL);
 
-    bool isValid() const;
-	
-private:
+        /// Destructor
+        ~PagesCriteriaWidget();
 
-    Q_DISABLE_COPY(PagesCriteriaWidget);
-    PagesCriteriaWidgetPrivate * const d_ptr;
-};
+        /// Gets the page count
+        int Pages() const;
+
+        /// Sets up the widget based on the criteria
+        void SetupWidget( const Data::Criteria * inCriteria );
+
+        /// Determines whether or not the information is valid
+        bool isValid() const;
+
+    private:
+
+        PagesCriteriaWidgetPrivate * const d_ptr;
+    };
 
 }
 

@@ -2,10 +2,10 @@
 
 #include "goalwidgetbase.h"
 
-using namespace Data;
+using namespace Test;
 
 GoalMock::GoalMock(QObject *parent) :
-    Goal(parent)
+    Data::Goal(parent)
 {
 }
 

@@ -10,50 +10,66 @@
 class QColorDialog;
 
 namespace Ui {
-class MonthGoalWidget;
+    class MonthGoalWidget;
 }
 
-namespace Data
-{
+namespace Data {
     class MonthGoal;
 }
 
-namespace UI
-{
+namespace UI {
 
-class MonthGoalWidget;
+    class MonthGoalWidget;
 
-class MonthGoalWidgetPrivate : public QObject
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(UI::MonthGoalWidget);
+    class MonthGoalWidgetPrivate : public QObject
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(UI::MonthGoalWidget)
+        Q_DISABLE_COPY(MonthGoalWidgetPrivate)
 
-public:
-    explicit MonthGoalWidgetPrivate(MonthGoalWidget *parent);
-    ~MonthGoalWidgetPrivate();
+    public:
 
-    QColor color;
-    QPointer<QColorDialog> colorDialog;
+        /// Default constructor
+        explicit MonthGoalWidgetPrivate(MonthGoalWidget *parent);
 
-    void SetupWidget( const Data::MonthGoal * goal );
+        /// Destructor
+        ~MonthGoalWidgetPrivate();
 
-    QString Name() const;
-    Time::Month Month() const;
-    int Year() const;
+        /// Sets up this widget based on the goal data
+        void SetupWidget( const Data::MonthGoal * goal );
 
-    Ui::MonthGoalWidget * const ui;
-    UI::MonthGoalWidget * const q_ptr;
+        /// Gets the goal name
+        QString Name() const;
 
-    Q_DISABLE_COPY(MonthGoalWidgetPrivate);
+        /// Gets the goal month
+        Time::Month Month() const;
 
-public Q_SLOTS:
+        /// Gets the goal year
+        int Year() const;
 
-    void OnColorSelected( const QColor & inColor );
+        /// Sets the widget data to defaults
+        void SetToDefaults();
 
-    void OnColorButtonClicked();
-    void OnCancelClicked();
-    void OnAcceptClicked();
-};
+        QColor color;
+        QPointer<QColorDialog> colorDialog;
+
+        Ui::MonthGoalWidget * const ui;
+        UI::MonthGoalWidget * const q_ptr;
+
+    public Q_SLOTS:
+
+        /// Slot called on color selected
+        void OnColorSelected( const QColor & inColor );
+
+        /// Slot called on color button clicked
+        void OnColorButtonClicked();
+
+        /// Slot called on cancel clicked
+        void OnCancelClicked();
+
+        /// Slot called on accept clicked
+        void OnAcceptClicked();
+    };
 
 }
 

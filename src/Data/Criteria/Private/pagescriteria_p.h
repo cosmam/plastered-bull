@@ -4,31 +4,34 @@
 #include "criteria_p.h"
 #include "pagescriteria.h"
 
-namespace UI
-{
+namespace UI {
     class PagesCriteriaWidget;
 }
 
-namespace Data
-{
+namespace Data {
 
-class PagesCriteriaPrivate : public CriteriaPrivate
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(Data::PagesCriteria);
-    Q_DISABLE_COPY(PagesCriteriaPrivate);
+    class PagesCriteriaPrivate : public CriteriaPrivate
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(Data::PagesCriteria)
+        Q_DISABLE_COPY(PagesCriteriaPrivate)
 
-public:
-    explicit PagesCriteriaPrivate();
-    ~PagesCriteriaPrivate();
-    
-    void init();
+    public:
 
-	int m_pages;
-	
-public Q_SLOTS:
+        /// Default constructor
+        explicit PagesCriteriaPrivate();
 
-};
+        /// Destructor
+        ~PagesCriteriaPrivate();
+
+        /// Function to initialize this class
+        void init();
+
+        int m_pages;
+
+    public Q_SLOTS:
+
+    };
 
 }
 

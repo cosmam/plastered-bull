@@ -3,29 +3,33 @@
 
 #include "selectablewidget.h"
 
-namespace UI
-{
+namespace UI {
 
-class GoalCalendarItemPrivate;
+    class GoalCalendarItemPrivate;
 
-class GoalCalendarItem : public SelectableWidget
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(UI::GoalCalendarItem);
+    class GoalCalendarItem : public SelectableWidget
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(UI::GoalCalendarItem)
+        Q_DISABLE_COPY(GoalCalendarItem)
 
-public:
-    explicit GoalCalendarItem(QWidget *parent = 0);
-    virtual ~GoalCalendarItem() {};
-    
-public Q_SLOTS:
+    public:
 
-Q_SIGNALS:
+        /// Default constructor
+        explicit GoalCalendarItem(QWidget *parent = 0);
 
-protected:
-	explicit GoalCalendarItem(GoalCalendarItemPrivate & d, QWidget *parent = 0);
+        /// Virtual destructor
+        virtual ~GoalCalendarItem() {}
 
-    Q_DISABLE_COPY(GoalCalendarItem);
-};
+    public Q_SLOTS:
+
+    Q_SIGNALS:
+
+    protected:
+
+        /// Overloaded constructor for d-pointer initialization
+        explicit GoalCalendarItem(GoalCalendarItemPrivate & d, QWidget *parent = 0);
+    };
 
 }
 

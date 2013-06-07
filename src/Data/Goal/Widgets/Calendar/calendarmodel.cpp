@@ -6,22 +6,41 @@
 
 using namespace UI;
 
-namespace
-{
+namespace {
     const int daysInWeek = 7;
 }
 
+/**
+ * @author Cosmam
+ * @name CalendarModel
+ * @namespace UI
+ * @brief Default constructor
+ * @param parent: The parent object
+ **/
 CalendarModel::CalendarModel(QObject *parent) :
     QObject(parent),
     d_ptr( new CalendarModelPrivate( this ) )
 {
 }
 
+/**
+ * @author Cosmam
+ * @name ~CalendarModel
+ * @namespace UI
+ * @brief Destructor
+ **/
 CalendarModel::~CalendarModel()
 {
     delete d_ptr;
 }
 
+/**
+ * @author Cosmam
+ * @name SetCalendarReference
+ * @namespace UI
+ * @brief Sets the calendar reference
+ * @param month: The month to set the reference with
+ **/
 void CalendarModel::SetCalendarReference(UI::CalendarMonth * month)
 {
     if( month == NULL ) {
@@ -47,6 +66,15 @@ void CalendarModel::SetCalendarReference(UI::CalendarMonth * month)
     }
 }
 
+/**
+ * @author Cosmam
+ * @name Day
+ * @namespace UI
+ * @brief Gets the calendar day at the given location
+ * @param row: The row position
+ * @param col: The column position
+ * @return The calendar day (possibly NULL)
+ **/
 UI::CalendarDay * CalendarModel::Day(int row, int col) const
 {
     UI::CalendarDay * day(NULL);
@@ -61,6 +89,15 @@ UI::CalendarDay * CalendarModel::Day(int row, int col) const
     return day;
 }
 
+/**
+ * @author Cosmam
+ * @name Range
+ * @namespace UI
+ * @brief CGets the range of calendar days between the start and end days
+ * @param start: The start day
+ * @param end: The end day
+ * @return The list of days in the range
+ **/
 QList<UI::CalendarDay *> CalendarModel::Range(CalendarDay *start, CalendarDay *end) const
 {
     QList<UI::CalendarDay *> days;
@@ -83,6 +120,13 @@ QList<UI::CalendarDay *> CalendarModel::Range(CalendarDay *start, CalendarDay *e
     return days;
 }
 
+/**
+ * @author Cosmam
+ * @name Rows
+ * @namespace UI
+ * @brief Gets the number of rows
+ * @return The number of rows
+ **/
 int CalendarModel::Rows() const
 {
     Q_D(const UI::CalendarModel);
@@ -92,6 +136,13 @@ int CalendarModel::Rows() const
 
 /**************** Private Class ***************/
 
+/**
+ * @author Cosmam
+ * @name CalendarModelPrivate
+ * @namespace UI
+ * @brief Default Constructor
+ * @param parent:  The parent CalendarModel
+ **/
 CalendarModelPrivate::CalendarModelPrivate(CalendarModel *parent) :
     QObject(parent),
     m_rows(0),
@@ -99,16 +150,37 @@ CalendarModelPrivate::CalendarModelPrivate(CalendarModel *parent) :
 {
 }
 
+/**
+ * @author Cosmam
+ * @name ~CalendarModelPrivate
+ * @namespace UI
+ * @brief Destructor
+ **/
 CalendarModelPrivate::~CalendarModelPrivate()
 {
 }
 
+/**
+ * @author Cosmam
+ * @name ClearData
+ * @namespace UI
+ * @brief Clears the private data
+ **/
 void CalendarModelPrivate::ClearData()
 {
     m_rows = 0;
     m_days.clear();
 }
 
+/**
+ * @author Cosmam
+ * @name IsValid
+ * @namespace UI
+ * @brief Gets whether or not the item is valid
+ * @param row: the item row
+ * @param col: the item column
+ * @return Whether or no the item at (row, col) is valid
+ **/
 bool CalendarModelPrivate::IsValid(int row, int col) const
 {
     return ((row < m_rows) && (col < daysInWeek));

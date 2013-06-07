@@ -3,6 +3,8 @@
 #include "goalmock.h"
 #include "timefunctions.h"
 
+using namespace Test;
+
 GoalTest::GoalTest(QObject *parent) :
     QObject(parent)
 {
@@ -20,7 +22,7 @@ void GoalTest::cleanupTestCase()
 
 void GoalTest::init()
 {
-    m_goal = new Data::GoalMock();
+    m_goal = new Test::GoalMock();
 }
 
 void GoalTest::cleanup()

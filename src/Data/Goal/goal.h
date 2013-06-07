@@ -3,58 +3,68 @@
 
 #include "challenge.h"
 #include "commontypes.h"
-#include "criteria.h"
 
 #include<QColor>
 #include<QString>
 
-namespace UI
-{
+namespace UI {
     class GoalWidgetBase;
 }
 
-namespace Data
-{
+namespace Data {
 
-class GoalPrivate;
+    class GoalPrivate;
 
-class Goal : public Challenge
-{
-	Q_OBJECT
-    Q_DECLARE_PRIVATE(Data::Goal);
+    class Goal : public Challenge
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(Data::Goal)
+        Q_DISABLE_COPY(Goal)
 
-public:
+    public:
 
-    Goal( QObject * parent = 0 );
-    virtual ~Goal() {};
-	
-    void setColor( const QColor & color );
-    QColor color() const;
-	
-    void setName( const QString & name );
-    QString name() const;
+        /// Default constructor
+        Goal( QObject * parent = 0 );
 
-//    void setCriteria( Data::Criteria * criteria );
-//    const Data::Criteria * criteria() const;
-		
-    virtual UI::GoalWidgetBase * CreateWidget() = 0;
+        /// Virtual destructor
+        virtual ~Goal() {}
 
-    ID_t id() const;
-	
-public Q_SLOTS:
+        /// Sets the goal color
+        void setColor( const QColor & color );
 
-Q_SIGNALS:
+        /// Gets the goal color
+        QColor color() const;
 
-	void colorChanged( QColor );
-    void nameChanged( QString );
-    void criteriaChanged( Data::Criteria * );
-	void goalChanged( Data::Goal * );
+        /// Sets the goal name
+        void setName( const QString & name );
 
-protected:
-    explicit Goal(GoalPrivate & d, QObject * parent = 0);
+        /// Gets the goal name
+        QString name() const;
 
-    Q_DISABLE_COPY(Goal);
-};
+        /// Virtual function that creates a goal widget from this goal
+        virtual UI::GoalWidgetBase * CreateWidget() = 0;
+
+        /// Gets the goal ID
+        ID_t id() const;
+
+    public Q_SLOTS:
+
+    Q_SIGNALS:
+
+        /// Signal emitted on color changed
+        void colorChanged( QColor );
+
+        /// Signal emitted on name changed
+        void nameChanged( QString );
+
+        /// Signal emitted on goal changed
+        void goalChanged( Data::Goal * );
+
+    protected:
+
+        /// Overloaded constructor for d-pointer inheritence
+        explicit Goal(GoalPrivate & d, QObject * parent = 0);
+    };
 
 }
 

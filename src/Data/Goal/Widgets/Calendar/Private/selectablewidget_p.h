@@ -4,32 +4,36 @@
 #include <QObject>
 #include <QPoint>
 
-namespace UI
-{
+namespace UI {
 
-class SelectableWidget;
+    class SelectableWidget;
 
-class SelectableWidgetPrivate : public QObject
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(UI::SelectableWidget);
-    Q_DISABLE_COPY(SelectableWidgetPrivate);
+    class SelectableWidgetPrivate : public QObject
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(UI::SelectableWidget)
+        Q_DISABLE_COPY(SelectableWidgetPrivate)
 
-public:
-    explicit SelectableWidgetPrivate();
-    virtual ~SelectableWidgetPrivate() {};
+    public:
 
-    virtual void init();
+        /// Default constructor
+        explicit SelectableWidgetPrivate();
 
-    QPoint m_pressPoint;
-    bool m_selected;
-    bool m_selectable;
+        /// Virtual Destructor
+        virtual ~SelectableWidgetPrivate() {}
 
-    SelectableWidget * q_ptr;
+        /// Virtual function to initialize the widget
+        virtual void init();
 
-public Q_SLOTS:
+        QPoint m_pressPoint;
+        bool m_selected;
+        bool m_selectable;
 
-};
+        SelectableWidget * q_ptr;
+
+    public Q_SLOTS:
+
+    };
 
 }
 

@@ -3,6 +3,8 @@
 #include "yeargoal.h"
 #include "timefunctions.h"
 
+using namespace Test;
+
 YearGoalTest::YearGoalTest(QObject *parent) :
     QObject(parent)
 {

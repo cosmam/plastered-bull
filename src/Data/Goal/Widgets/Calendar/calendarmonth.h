@@ -5,38 +5,50 @@
 
 #include <QWidget>
 
-namespace UI
-{
+namespace UI {
 
-class CalendarDay;
-class CalendarModel;
-class CalendarMonthPrivate;
+    class CalendarDay;
+    class CalendarModel;
+    class CalendarMonthPrivate;
 
-class CalendarMonth : public QWidget
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(UI::CalendarMonth);
-    
-public:
-    explicit CalendarMonth(QWidget *parent = 0);
-    ~CalendarMonth();
-    
-    Time::Month Month() const;
-    int Year() const;
-    int NumWeeks() const;
+    class CalendarMonth : public QWidget
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(UI::CalendarMonth)
+        Q_DISABLE_COPY(CalendarMonth)
 
-    UI::CalendarDay * Day(int day) const;
+    public:
 
-public Q_SLOTS:
+        /// Default constructor
+        explicit CalendarMonth(QWidget *parent = 0);
 
-    void SetMonth( Time::Month month );
-    void SetYear( int year );
+        /// Destructor
+        ~CalendarMonth();
 
-private:
+        /// Gets the month
+        Time::Month Month() const;
 
-    Q_DISABLE_COPY(CalendarMonth);
-    CalendarMonthPrivate * const d_ptr;
-};
+        /// Gets the year
+        int Year() const;
+
+        /// Gets the number of weeks in the month
+        int NumWeeks() const;
+
+        /// Gets the calendar day object for the given day
+        UI::CalendarDay * Day(int day) const;
+
+    public Q_SLOTS:
+
+        /// Sets the month
+        void SetMonth( Time::Month month );
+
+        /// Sets the year
+        void SetYear( int year );
+
+    private:
+
+        CalendarMonthPrivate * const d_ptr;
+    };
 
 }
 

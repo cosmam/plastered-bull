@@ -3,31 +3,45 @@
 
 #include "goalwidgetbase.h"
 
-namespace UI
-{
+namespace Test {
+    class DayGoalWidgetTest;
+}
 
-class DayGoalWidgetPrivate;
+namespace UI {
 
-class DayGoalWidget : public UI::GoalWidgetBase
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(UI::DayGoalWidget);
-    
-public:
-    explicit DayGoalWidget(QWidget * parent = NULL);
-    ~DayGoalWidget();
+    class DayGoalWidgetPrivate;
 
-    void SetupWidget( const Data::Goal * inGoal );
+    class DayGoalWidget : public UI::GoalWidgetBase
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(UI::DayGoalWidget)
+        Q_DISABLE_COPY(DayGoalWidget)
 
-    QString Name() const;
-	QColor Color() const;
-	QDate Date() const;
-    
-private:
+    public:
 
-    Q_DISABLE_COPY(DayGoalWidget);
-    DayGoalWidgetPrivate * const d_ptr;
-};
+        /// Default constructor
+        explicit DayGoalWidget(QWidget * parent = NULL);
+
+        /// Destructor
+        ~DayGoalWidget();
+
+        /// Sets this widget up based on the goal data
+        void SetupWidget( const Data::Goal * inGoal );
+
+        /// Gets the goal name
+        QString Name() const;
+
+        /// Gets the goal color
+        QColor Color() const;
+
+        /// Gets the goal date
+        QDate Date() const;
+
+    private:
+
+        friend class Test::DayGoalWidgetTest;
+        DayGoalWidgetPrivate * const d_ptr;
+    };
 
 }
 

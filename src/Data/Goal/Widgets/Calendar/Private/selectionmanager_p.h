@@ -6,40 +6,52 @@
 namespace UI
 {
 
-class CalendarDay;
-class CalendarModel;
-class GoalCalendarItem;
-class SelectionManager;
+    class CalendarDay;
+    class CalendarModel;
+    class GoalCalendarItem;
+    class SelectionManager;
 
-class SelectionManagerPrivate : public QObject
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(UI::SelectionManager);
+    class SelectionManagerPrivate : public QObject
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(UI::SelectionManager)
+        Q_DISABLE_COPY(SelectionManagerPrivate)
 
-public:
-    explicit SelectionManagerPrivate(SelectionManager *parent);
-	~SelectionManagerPrivate();
+    public:
 
-    void BreakModelConnections() const;
-    void MakeModelConnections() const;
-    void UnselectAll();
+        /// Default constructor
+        explicit SelectionManagerPrivate(SelectionManager *parent);
 
-    void SetItemSelected(UI::CalendarDay * item, bool selected);
-    void StyleItems();
+        /// Destructor
+        ~SelectionManagerPrivate();
 
-    UI::CalendarModel * model;
-    QList<UI::CalendarDay *> selectedItems;
-    UI::CalendarDay * lastSelected;
-    
-    SelectionManager * const q_ptr;
+        /// Breaks the connections for the model
+        void BreakModelConnections() const;
 
-    Q_DISABLE_COPY(SelectionManagerPrivate);
+        /// Makes the connections for the model
+        void MakeModelConnections() const;
 
-public Q_SLOTS:
+        /// Unselects all items
+        void UnselectAll();
 
-    void OnWidgetClicked();
+        /// Sets the item selected state
+        void SetItemSelected(UI::CalendarDay * item, bool selected);
 
-};
+        /// Styles the items
+        void StyleItems();
+
+        UI::CalendarModel * model;
+        QList<UI::CalendarDay *> selectedItems;
+        UI::CalendarDay * lastSelected;
+
+        SelectionManager * const q_ptr;
+
+    public Q_SLOTS:
+
+        /// Slot called when a widget is clicked
+        void OnWidgetClicked();
+
+    };
 
 }
 

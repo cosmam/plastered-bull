@@ -3,38 +3,45 @@
 
 #include <QObject>
 
-namespace UI
-{
+namespace UI {
 	class CriteriaWidgetBase;
 }
 
-namespace Data
-{
+namespace Data {
 
-class CriteriaPrivate;
+    class CriteriaPrivate;
 
-class Criteria : public QObject
-{
-	Q_OBJECT
-    Q_DECLARE_PRIVATE(Data::Criteria);
-    Q_DISABLE_COPY(Criteria);
-	
-public:
-    explicit Criteria(QObject * parent = 0);
-    virtual ~Criteria() {};
-    
-	virtual bool Met(const Criteria * other) const = 0;
-	
-    virtual UI::CriteriaWidgetBase * CreateWidget() = 0;
-	
-public Q_SLOTS:
+    class Criteria : public QObject
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(Data::Criteria)
+        Q_DISABLE_COPY(Criteria)
 
-Q_SIGNALS:
-	
-protected:
-    explicit Criteria(CriteriaPrivate & d, QObject * parent = 0);
-    CriteriaPrivate * const d_ptr;
-};
+    public:
+
+        /// Default constructor
+        explicit Criteria(QObject * parent = 0);
+
+        /// Virtual destructor
+        virtual ~Criteria() {}
+
+        /// Virtual function to check if this criteria meets the bar set by the other
+        virtual bool Met(const Criteria * other) const = 0;
+
+        /// Virtual function to create the criteria widget
+        virtual UI::CriteriaWidgetBase * CreateWidget() = 0;
+
+    public Q_SLOTS:
+
+    Q_SIGNALS:
+
+    protected:
+
+        /// Protected constructor for d-pointer inheritence
+        explicit Criteria(CriteriaPrivate & d, QObject * parent = 0);
+
+        CriteriaPrivate * const d_ptr;
+    };
 
 }
 

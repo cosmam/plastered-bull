@@ -11,62 +11,84 @@ namespace Ui {
 class GoalCalendar;
 }
 
-namespace Data
-{
+namespace Data  {
     class Goal;
 }
 
-namespace UI
-{
+namespace UI    {
 
-class CalendarModel;
-class GoalCalendar;
-class GoalWidgetBase;
-class SelectionManager;
+    class CalendarModel;
+    class GoalCalendar;
+    class GoalWidgetBase;
+    class SelectionManager;
 
-class GoalCalendarPrivate : public QObject
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(UI::GoalCalendar);
+    class GoalCalendarPrivate : public QObject
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(UI::GoalCalendar)
+        Q_DISABLE_COPY(GoalCalendarPrivate)
 
-public:
-    explicit GoalCalendarPrivate( GoalCalendar * parent );
-	~GoalCalendarPrivate();
+    public:
 
-    void MakeGoalConnections( Data::Goal * goal );
-    void MakeConnections();
-    void CreateDialog( Data::Goal * goal );
+        /// Default constructor
+        explicit GoalCalendarPrivate( GoalCalendar * parent );
 
-    void PopulateModel();
+        /// Destructor
+        ~GoalCalendarPrivate();
 
-    QList<Data::Goal *> goals;
-    QPointer<QDialog> goalDialog;
-    QPointer<Data::Goal> newGoal;
-    UI::CalendarModel * model;
-    UI::SelectionManager * manager;
+        /// Makes the connections for the given goal
+        void MakeGoalConnections( Data::Goal * goal );
 
-    Ui::GoalCalendar * const ui;
-    GoalCalendar * const q_ptr;
+        /// Makes the connections for this widget
+        void MakeConnections();
 
-    Q_DISABLE_COPY(GoalCalendarPrivate);
+        /// Creates the dialog for a goal
+        void CreateDialog( Data::Goal * goal );
 
-public Q_SLOTS:
+        /// Populates the calendar model
+        void PopulateModel();
 
-    void OnDestroyed( QObject * object );
+        QList<Data::Goal *> goals;
+        QPointer<QDialog> goalDialog;
+        QPointer<Data::Goal> newGoal;
+        UI::CalendarModel * model;
+        UI::SelectionManager * manager;
 
-    void OnMonthChanged( int month );
-    void OnYearChanged( QString year );
+        Ui::GoalCalendar * const ui;
+        GoalCalendar * const q_ptr;
 
-    void OnCustomGoalClicked();
-    void OnDayGoalClicked();
-    void OnMonthGoalClicked();
-    void OnWeekGoalClicked();
-    void OnYearGoalClicked();
+    public Q_SLOTS:
 
-    void OnDialogCanceled();
+        /// Slot called when a goal is destroyed
+        void OnDestroyed( QObject * object );
 
-    void SetUpdatesEnabled(bool enabled);
-};
+        /// Slot called when the month is changed
+        void OnMonthChanged( int month );
+
+        /// Slot called when the year is changed
+        void OnYearChanged( QString year );
+
+        /// Slot called when the custom goal button is clicked
+        void OnCustomGoalClicked();
+
+        /// Slot called when the day goal button is clicked
+        void OnDayGoalClicked();
+
+        /// Slot called when the month goal button is clicked
+        void OnMonthGoalClicked();
+
+        /// Slot called when the week goal button is clicked
+        void OnWeekGoalClicked();
+
+        /// Slot called when the year goal button is clicked
+        void OnYearGoalClicked();
+
+        /// Slot called when the dialog is canceled
+        void OnDialogCanceled();
+
+        /// Slot called to enable/disable updates
+        void SetUpdatesEnabled(bool enabled);
+    };
 
 }
 

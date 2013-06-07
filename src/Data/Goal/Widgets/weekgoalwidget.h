@@ -3,31 +3,45 @@
 
 #include "goalwidgetbase.h"
 
-namespace UI
-{
+namespace Test {
+    class WeekGoalWidgetTest;
+}
 
-class WeekGoalWidgetPrivate;
+namespace UI {
 
-class WeekGoalWidget : public UI::GoalWidgetBase
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(UI::WeekGoalWidget);
-    
-public:
-    explicit WeekGoalWidget(QWidget * parent = NULL);
-    ~WeekGoalWidget();
+    class WeekGoalWidgetPrivate;
 
-    void SetupWidget( const Data::Goal * inGoal );
+    class WeekGoalWidget : public UI::GoalWidgetBase
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(UI::WeekGoalWidget)
+        Q_DISABLE_COPY(WeekGoalWidget)
 
-    QString Name() const;
-	QColor Color() const;
-	QDate StartDate() const;
+    public:
 
-private:
+        /// Default constructor
+        explicit WeekGoalWidget(QWidget * parent = NULL);
 
-    Q_DISABLE_COPY(WeekGoalWidget);
-    WeekGoalWidgetPrivate * const d_ptr;
-};
+        /// Destructor
+        ~WeekGoalWidget();
+
+        /// Sets this widget up based on the goal data
+        void SetupWidget( const Data::Goal * inGoal );
+
+        /// Gets the goal name
+        QString Name() const;
+
+        /// Gets the goal color
+        QColor Color() const;
+
+        /// Gets the goal start date
+        QDate StartDate() const;
+
+    private:
+
+        friend class Test::WeekGoalWidgetTest;
+        WeekGoalWidgetPrivate * const d_ptr;
+    };
 
 }
 

@@ -10,6 +10,9 @@ namespace Data
     class YearGoal;
 }
 
+namespace Test
+{
+
 class YearGoalTest : public QObject
 {
         Q_OBJECT
@@ -34,5 +37,7 @@ class YearGoalTest : public QObject
         void TestYear_data();
         void TestYear();
 };
+
+}
 
 #endif // YEARGOALTEST_H

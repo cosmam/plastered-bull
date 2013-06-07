@@ -10,6 +10,15 @@
 
 using namespace Data;
 
+/**
+ * @author Cosmam
+ * @name CreateGoal
+ * @namespace Data
+ * @brief Static function to create a goal
+ * @param type: The goal type
+ * @param parent: The parent QObject (optional, default NULL)
+ * @return The goal (possibly NULL if type is invalid)
+ **/
 Data::Goal * GoalFactory::CreateGoal( int type, QObject * parent )
 {
 	Data::Goal * goal( NULL );

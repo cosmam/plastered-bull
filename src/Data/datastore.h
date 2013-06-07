@@ -3,37 +3,45 @@
 
 #include <QObject>
 
-namespace Data
-{
+namespace Data {
 
-class Goal;
+    class Goal;
 
-class DataStore : public QObject
-{
-    Q_OBJECT
-public:
-    explicit DataStore(QObject *parent = 0);
-    ~DataStore();
+    class DataStore : public QObject
+    {
+        Q_OBJECT
 
-    void Add( Data::Goal * goal );
+        public:
 
-    void Remove( Data::Goal * goal );
+            /// Default constructor
+            explicit DataStore(QObject *parent = 0);
 
-    const QList<Data::Goal *> GetAll() const;
+            /// Destructor
+            ~DataStore();
 
-Q_SIGNALS:
-    
-public Q_SLOTS:
+            //// Adds a goal
+            void Add( Data::Goal * goal );
 
-private:
+            /// Removes a goal
+            void Remove( Data::Goal * goal );
 
-    class Impl;
-    Impl * m_Impl;
-    
-private Q_SLOTS:
+            /// Gets a list of all the goals
+            const QList<Data::Goal *> GetAll() const;
 
-    void GoalDeleted( QObject * object );
-};
+        Q_SIGNALS:
+
+        public Q_SLOTS:
+
+        private:
+
+            class Impl;
+            Impl * m_Impl;
+
+        private Q_SLOTS:
+
+            /// Slot called when a goal is deleted
+            void GoalDeleted( QObject * object );
+    };
 
 }
 

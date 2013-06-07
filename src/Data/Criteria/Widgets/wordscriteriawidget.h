@@ -3,31 +3,37 @@
 
 #include "criteriawidgetbase.h"
 
-namespace UI
-{
+namespace UI {
 
-class WordsCriteriaWidgetPrivate;
+    class WordsCriteriaWidgetPrivate;
 
-class WordsCriteriaWidget : public UI::CriteriaWidgetBase
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(UI::WordsCriteriaWidget);
-    
-public:
-    explicit WordsCriteriaWidget(QWidget * parent = NULL);
-    ~WordsCriteriaWidget();
+    class WordsCriteriaWidget : public UI::CriteriaWidgetBase
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(UI::WordsCriteriaWidget)
+        Q_DISABLE_COPY(WordsCriteriaWidget)
 
-    int Words() const;
+    public:
 
-    void SetupWidget( const Data::Criteria * inCriteria );
+        /// Default constructor
+        explicit WordsCriteriaWidget(QWidget * parent = NULL);
 
-    bool isValid() const;
-	
-private:
+        /// Destructor
+        ~WordsCriteriaWidget();
 
-    Q_DISABLE_COPY(WordsCriteriaWidget);
-    WordsCriteriaWidgetPrivate * const d_ptr;
-};
+        /// Gets the number of words
+        int Words() const;
+
+        /// Sets up the widget based on the criteria
+        void SetupWidget( const Data::Criteria * inCriteria );
+
+        /// Determines whether or not the information is valid
+        bool isValid() const;
+
+    private:
+
+        WordsCriteriaWidgetPrivate * const d_ptr;
+    };
 
 }
 

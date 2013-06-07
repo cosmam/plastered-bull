@@ -4,25 +4,28 @@
 #include "selectablewidget_p.h"
 #include "goalcalendaritem.h"
 
-namespace UI
-{
+namespace UI {
 
-class GoalCalendarItemPrivate : public SelectableWidgetPrivate
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(UI::GoalCalendarItem);
+    class GoalCalendarItemPrivate : public SelectableWidgetPrivate
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(UI::GoalCalendarItem)
+        Q_DISABLE_COPY(GoalCalendarItemPrivate)
 
-public:
-    explicit GoalCalendarItemPrivate();
-    virtual ~GoalCalendarItemPrivate() {};
+    public:
 
-    virtual void init();
+        /// Default constructor
+        explicit GoalCalendarItemPrivate();
 
-    Q_DISABLE_COPY(GoalCalendarItemPrivate);
+        /// Virtual destructor
+        virtual ~GoalCalendarItemPrivate() {};
 
-public Q_SLOTS:
+        /// Virtual function to initialize this widget
+        virtual void init();
 
-};
+    public Q_SLOTS:
+
+    };
 
 }
 

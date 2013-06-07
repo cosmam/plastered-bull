@@ -5,27 +5,34 @@
 
 #include <QWidget>
 
-namespace UI
-{
+namespace UI {
 
 class GoalWidgetBase : public QWidget
 {
     Q_OBJECT
-public:
-    explicit GoalWidgetBase(QWidget *parent = 0);
-    
-    virtual ~GoalWidgetBase() {};
 
-    virtual void SetupWidget( const Data::Goal * inGoal ) = 0;
+    public:
 
-Q_SIGNALS:
+        /// Default constructor
+        explicit GoalWidgetBase(QWidget *parent = 0);
 
-    void ChangesAccepted();
-    void ChangesCanceled();
+        /// Virtual destructor
+        virtual ~GoalWidgetBase() {}
 
-public Q_SLOTS:
-    
-};
+        /// Virtual function to set this widget up based on goal data
+        virtual void SetupWidget( const Data::Goal * inGoal ) = 0;
+
+    Q_SIGNALS:
+
+        /// Signal emitted on changes accepted
+        void ChangesAccepted();
+
+        /// Signal emitted on changes canceled
+        void ChangesCanceled();
+
+    public Q_SLOTS:
+
+    };
 
 }
 

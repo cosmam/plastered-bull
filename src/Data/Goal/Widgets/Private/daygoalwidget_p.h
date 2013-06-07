@@ -8,49 +8,63 @@
 class QColorDialog;
 
 namespace Ui {
-class DayGoalWidget;
+    class DayGoalWidget;
 }
 
-namespace Data
-{
+namespace Data {
     class DayGoal;
 }
 
-namespace UI
-{
+namespace UI {
 
-class DayGoalWidget;
+    class DayGoalWidget;
 
-class DayGoalWidgetPrivate : public QObject
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(UI::DayGoalWidget);
+    class DayGoalWidgetPrivate : public QObject
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(UI::DayGoalWidget)
+        Q_DISABLE_COPY(DayGoalWidgetPrivate)
 
-public:
-    explicit DayGoalWidgetPrivate(DayGoalWidget *parent);
-    ~DayGoalWidgetPrivate();
+    public:
 
-    QColor color;
-    QPointer<QColorDialog> colorDialog;
+        /// Default constructor
+        explicit DayGoalWidgetPrivate(DayGoalWidget *parent);
 
-    void SetupWidget( const Data::DayGoal * goal );
+        /// Destructor
+        ~DayGoalWidgetPrivate();
 
-    QString Name() const;
-    QDate Date() const;
+        /// Sets up this widget based on the goal data
+        void SetupWidget( const Data::DayGoal * goal );
 
-    Ui::DayGoalWidget * const ui;
-    UI::DayGoalWidget * const q_ptr;
+        /// Gets the goal name
+        QString Name() const;
 
-    Q_DISABLE_COPY(DayGoalWidgetPrivate);
+        /// Gets the goal date
+        QDate Date() const;
 
-public Q_SLOTS:
+        /// Sets the widget data to defaults
+        void SetToDefaults();
 
-    void OnColorSelected( const QColor & inColor );
+        QColor color;
+        QPointer<QColorDialog> colorDialog;
 
-    void OnColorButtonClicked();
-    void OnCancelClicked();
-    void OnAcceptClicked();
-};
+        Ui::DayGoalWidget * const ui;
+        UI::DayGoalWidget * const q_ptr;
+
+    public Q_SLOTS:
+
+        /// Slot called on color selected
+        void OnColorSelected( const QColor & inColor );
+
+        /// Slot called on color button clicked
+        void OnColorButtonClicked();
+
+        /// Slot called on cancel clicked
+        void OnCancelClicked();
+
+        /// Slot called on accept clicked
+        void OnAcceptClicked();
+    };
 
 }
 

@@ -8,10 +8,10 @@ namespace UI
     class GoalWidgetBase;
 }
 
-namespace Data
+namespace Test
 {
 
-class GoalMock : public Goal
+class GoalMock : public Data::Goal
 {
         Q_OBJECT
     public:

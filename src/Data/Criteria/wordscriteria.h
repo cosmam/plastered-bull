@@ -3,38 +3,48 @@
 
 #include "criteria.h"
 
-namespace Data
-{
+namespace Data {
 
-class WordsCriteriaPrivate;
+    class WordsCriteriaPrivate;
 
-class WordsCriteria : public Criteria
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(Data::WordsCriteria);
-    Q_DISABLE_COPY(WordsCriteria);
+    class WordsCriteria : public Criteria
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(Data::WordsCriteria)
+        Q_DISABLE_COPY(WordsCriteria)
 
-public:
-    explicit WordsCriteria(QObject *parent = 0);
-    ~WordsCriteria();
-	    
-	void setWords(int words);
-	int words() const;
-		
-	bool Met(const Criteria * other) const;
-	
-	UI::CriteriaWidgetBase * CreateWidget();
-	
-public Q_SLOTS:
-    
-Q_SIGNALS:
+    public:
 
-};
+        /// Default constructor
+        explicit WordsCriteria(QObject *parent = 0);
+
+        /// Destructor
+        ~WordsCriteria();
+
+        /// Sets the number of words
+        void setWords(int words);
+
+        /// Gets the number of words
+        int words() const;
+
+        /// Checks if this criteria meets the bar set by the other
+        bool Met(const Criteria * other) const;
+
+        /// Creates the criteria widget
+        UI::CriteriaWidgetBase * CreateWidget();
+
+    public Q_SLOTS:
+
+    Q_SIGNALS:
+
+    };
 
 }
 
-QDataStream & operator<<(QDataStream & out, const Data::WordsCriteria & goal);
+/// QDataStream output operator
+QDataStream & operator<<(QDataStream & out, const Data::WordsCriteria & criteria);
 
-QDataStream & operator>>(QDataStream & in, Data::WordsCriteria & goal);
+/// QDataStream input operator
+QDataStream & operator>>(QDataStream & in, Data::WordsCriteria & criteria);
 
 #endif // WORDSCRITERIA_H

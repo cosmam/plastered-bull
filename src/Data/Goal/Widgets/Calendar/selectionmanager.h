@@ -3,36 +3,42 @@
 
 #include <QObject>
 
-namespace UI
-{
+namespace UI {
 
-class CalendarModel;
-class SelectionManagerPrivate;
+    class CalendarModel;
+    class SelectionManagerPrivate;
 
-class SelectionManager : public QObject
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(UI::SelectionManager);
+    class SelectionManager : public QObject
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(UI::SelectionManager)
+        Q_DISABLE_COPY(SelectionManager)
 
-public:
-    explicit SelectionManager(QObject *parent = 0);
-    ~SelectionManager();
-    
-    void ClearData();
+    public:
 
-    void SetModel(UI::CalendarModel * model);
+        /// Default constructor
+        explicit SelectionManager(QObject *parent = 0);
 
-public Q_SLOTS:
+        /// Destructor
+        ~SelectionManager();
 
-Q_SIGNALS:
+        /// Clears the data
+        void ClearData();
 
-    void enableUpdates(bool);
+        /// Sets the model
+        void SetModel(UI::CalendarModel * model);
 
-private:
+    public Q_SLOTS:
 
-    Q_DISABLE_COPY(SelectionManager);
-    SelectionManagerPrivate * const d_ptr;
-};
+    Q_SIGNALS:
+
+        /// Signal to enable/disable updates
+        void enableUpdates(bool);
+
+    private:
+
+        SelectionManagerPrivate * const d_ptr;
+    };
 
 }
 

@@ -5,35 +5,40 @@
 #include "calendarday.h"
 
 namespace Ui {
-class CalendarDay;
+    class CalendarDay;
 }
 
-namespace UI
-{
+namespace UI {
 
-class CalendarDay;
+    class CalendarDay;
 
-class CalendarDayPrivate : public GoalCalendarItemPrivate
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(UI::CalendarDay);
+    class CalendarDayPrivate : public GoalCalendarItemPrivate
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(UI::CalendarDay)
+        Q_DISABLE_COPY(CalendarDayPrivate)
 
-public:
-    explicit CalendarDayPrivate();
-    ~CalendarDayPrivate();
+    public:
 
-	void SetDayLabel( const QString & label );
+        /// Default constructor
+        explicit CalendarDayPrivate();
 
-    void init();
+        /// Destructor
+        ~CalendarDayPrivate();
 
-    Ui::CalendarDay * const m_ui;
-    
-    Q_DISABLE_COPY(CalendarDayPrivate);
+        /// Sets the day label
+        void SetDayLabel( const QString & label );
 
-public Q_SLOTS:
+        /// Initializes this widget
+        void init();
 
-    void PositionWidgets();
-};
+        Ui::CalendarDay * const m_ui;
+
+    public Q_SLOTS:
+
+        /// Slot to position this widget's widgets
+        void PositionWidgets();
+    };
 
 }
 

@@ -7,6 +7,13 @@
 
 using namespace Data;
 
+/**
+ * @author Cosmam
+ * @name CustomGoal
+ * @namespace Data
+ * @brief Default constructor
+ * @param parent: The parent object
+ **/
 CustomGoal::CustomGoal(QObject *parent) :
     Goal(*new Data::CustomGoalPrivate, parent)
 {
@@ -16,16 +23,36 @@ CustomGoal::CustomGoal(QObject *parent) :
     d->init();
 }
 
+/**
+ * @author Cosmam
+ * @name ~CustomGoal
+ * @namespace Data
+ * @brief Destructor
+ **/
 CustomGoal::~CustomGoal()
 {
 }
 
+/**
+ * @author Cosmam
+ * @name start
+ * @namespace Data
+ * @brief The goal start datetime
+ * @return The start datetime
+ **/
 QDateTime CustomGoal::start() const
 {
     Q_D(const Data::CustomGoal);
     return QDateTime( d->startDate, Time::startTime );
 }
 
+/**
+ * @author Cosmam
+ * @name end
+ * @namespace Data
+ * @brief The goal end datetime
+ * @return The end datetime
+ **/
 QDateTime CustomGoal::end() const
 {
     Q_D(const Data::CustomGoal);
@@ -33,6 +60,13 @@ QDateTime CustomGoal::end() const
     return QDateTime( date.addDays( d->duration ), Time::endTime );
 }
 
+/**
+ * @author Cosmam
+ * @name setStartDate
+ * @namespace Data
+ * @brief Sets the goal start date
+ * @param date: The goal start date
+ **/
 void CustomGoal::setStartDate( const QDate & date )
 {
     if( date.isValid() )
@@ -43,12 +77,26 @@ void CustomGoal::setStartDate( const QDate & date )
     }
 }
 
+/**
+ * @author Cosmam
+ * @name startDate
+ * @namespace Data
+ * @brief Gets the goal start date
+ * @return The goal start date
+ **/
 QDate CustomGoal::startDate() const
 {
     Q_D(const Data::CustomGoal);
     return d->startDate;
 }
 
+/**
+ * @author Cosmam
+ * @name setDuration
+ * @namespace Data
+ * @brief Sets the goal duration
+ * @param duration: The goal duration
+ **/
 void CustomGoal::setDuration( int duration )
 {
     if( duration > 0 ) {
@@ -58,12 +106,26 @@ void CustomGoal::setDuration( int duration )
     }
 }
 
+/**
+ * @author Cosmam
+ * @name duration
+ * @namespace Data
+ * @brief Gets the goal duration
+ * @return The goal duration
+ */
 int CustomGoal::duration() const
 {
     Q_D(const Data::CustomGoal);
     return d->duration;
 }
 
+/**
+ * @author Cosmam
+ * @name CreateWidget
+ * @namespace Data
+ * @brief Creates the goal widget based on this goal
+ * @return The goal widget
+ */
 UI::GoalWidgetBase * CustomGoal::CreateWidget()
 {
     Q_D(Data::CustomGoal);
@@ -79,6 +141,12 @@ UI::GoalWidgetBase * CustomGoal::CreateWidget()
 
 /**************** Private Class ***************/
 
+/**
+ * @author Cosmam
+ * @name CustomGoalPrivate
+ * @namespace Data
+ * @brief Default constructor
+ **/
 CustomGoalPrivate::CustomGoalPrivate() :
     GoalPrivate(),
     startDate(QDate::currentDate()),
@@ -86,10 +154,22 @@ CustomGoalPrivate::CustomGoalPrivate() :
 {
 }
 
+/**
+ * @author Cosmam
+ * @name ~CustomGoalPrivate
+ * @namespace Data
+ * @brief Destructor
+ **/
 CustomGoalPrivate::~CustomGoalPrivate()
 {
 }
 
+/**
+ * @author Cosmam
+ * @name init
+ * @namespace Data
+ * @brief Initializes this object
+ **/
 void CustomGoalPrivate::init()
 {
     Q_Q(Data::CustomGoal);
@@ -103,6 +183,12 @@ void CustomGoalPrivate::init()
              this, SLOT( OnDataUpdated() ) );
 }
 
+/**
+ * @author Cosmam
+ * @name WidgetChangesAccepted
+ * @namespace Data
+ * @brief Slot called when the widget changes are accepted to process the new data
+ **/
 void CustomGoalPrivate::WidgetChangesAccepted()
 {
     if( widget == NULL )
@@ -127,6 +213,12 @@ void CustomGoalPrivate::WidgetChangesAccepted()
     }
 }
 
+/**
+ * @author Cosmam
+ * @name OnDataUpdated
+ * @namespace Data
+ * @brief Slot called when data is updated, to emit the goal goalChanged signal
+ **/
 void CustomGoalPrivate::OnDataUpdated()
 {
     Q_Q(Data::CustomGoal);
@@ -135,34 +227,46 @@ void CustomGoalPrivate::OnDataUpdated()
 
 /************* External Functions *************/
 
+/**
+ * @author Cosmam
+ * @name operator<<
+ * @brief Outputs a customgoal to QDataStream
+ * @param out: The QDataStream output stream
+ * @param goal: The goal to output data for
+ * @return A reference to the output stream
+ **/
 QDataStream & operator<<(QDataStream & out, const CustomGoal & goal)
 {
     out << goal.name();
     out << goal.color();
-//    out << goal.criteria();
     out << goal.startDate();
     out << quint32( goal.duration() );
 
     return out;
 }
 
+/**
+ * @author Cosmam
+ * @name operator>>
+ * @brief Inputs a customgoal from QDataStream
+ * @param in: The QDataStream input stream
+ * @param goal: The goal to populate
+ * @return A reference to the input stream
+ **/
 QDataStream & operator>>(QDataStream & in, CustomGoal & goal)
 {
     QString name;
     QColor color;
-//    Data::Criteria criteria;
     QDate date;
     quint32 duration;
 
     in >> name;
     in >> color;
-//    in >> criteria;
     in >> date;
     in >> duration;
 
     goal.setName( name );
     goal.setColor( color );
-//    goal.setCriteria( criteria );
     goal.setStartDate( date );
     goal.setDuration( int(duration) );
 

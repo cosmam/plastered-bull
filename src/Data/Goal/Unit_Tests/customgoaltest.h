@@ -10,6 +10,9 @@ namespace Data
     class CustomGoal;
 }
 
+namespace Test
+{
+
 class CustomGoalTest : public QObject
 {
         Q_OBJECT
@@ -36,5 +39,7 @@ class CustomGoalTest : public QObject
         void TestDuration_data();
         void TestDuration();
 };
+
+}
 
 #endif // CUSTOMGOALTEST_H

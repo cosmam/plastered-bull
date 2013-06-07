@@ -2,29 +2,37 @@
 #define CHALLENGE_P_H
 
 #include <QObject>
+#include <QPointer>
 
-namespace Data
-{
+namespace Data {
 
-class Challenge;
+    class Challenge;
+    class Criteria;
 
-class ChallengePrivate : public QObject
-{
-	Q_OBJECT
-    Q_DECLARE_PUBLIC(Data::Challenge);
-    Q_DISABLE_COPY(ChallengePrivate);
+    class ChallengePrivate : public QObject
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(Data::Challenge)
+        Q_DISABLE_COPY(ChallengePrivate)
 
-public:
-    explicit ChallengePrivate();
-    virtual ~ChallengePrivate() {};
-	
-    virtual void init();
+    public:
 
-    Challenge * q_ptr;
+        /// Default constructor
+        explicit ChallengePrivate();
 
-public Q_SLOTS:
+        /// Virtual destructor
+        virtual ~ChallengePrivate() {}
 
-};
+        /// Virtual function to initialize this class
+        virtual void init();
+
+        QPointer<Data::Criteria> criteria;
+
+        Challenge * q_ptr;
+
+    public Q_SLOTS:
+
+    };
 
 }
 

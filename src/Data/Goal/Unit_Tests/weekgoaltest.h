@@ -10,6 +10,9 @@ namespace Data
     class WeekGoal;
 }
 
+namespace Test
+{
+
 class WeekGoalTest : public QObject
 {
         Q_OBJECT
@@ -34,5 +37,7 @@ class WeekGoalTest : public QObject
         void TestStart_data();
         void TestStart();
 };
+
+}
 
 #endif // WEEKGOALTEST_H

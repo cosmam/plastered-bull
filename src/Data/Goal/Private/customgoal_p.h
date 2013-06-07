@@ -7,39 +7,45 @@
 #include <QDate>
 #include <QPointer>
 
-namespace UI
-{
+namespace UI {
     class CustomGoalWidget;
 }
 
-namespace Data
-{
+namespace Data {
 
-class CustomGoal;
-class Goal;
+    class CustomGoal;
+    class Goal;
 
-class CustomGoalPrivate : public GoalPrivate
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(Data::CustomGoal);
+    class CustomGoalPrivate : public GoalPrivate
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(Data::CustomGoal)
 
-public:
-    explicit CustomGoalPrivate();
-    ~CustomGoalPrivate();
+    public:
 
-    void init();
+        /// Default constructor
+        explicit CustomGoalPrivate();
 
-    QDate startDate;
-    int duration;
-    QPointer<UI::CustomGoalWidget> widget;
+        /// Destructor
+        ~CustomGoalPrivate();
 
-    Q_DISABLE_COPY(CustomGoalPrivate);
+        /// Initializes this widget
+        void init();
 
-public Q_SLOTS:
+        QDate startDate;
+        int duration;
+        QPointer<UI::CustomGoalWidget> widget;
 
-    void WidgetChangesAccepted();
-    void OnDataUpdated();
-};
+        Q_DISABLE_COPY(CustomGoalPrivate)
+
+    public Q_SLOTS:
+
+        /// Slot called when the widget changes are accepted
+        void WidgetChangesAccepted();
+
+        /// Slot called when the data is updated
+        void OnDataUpdated();
+    };
 
 }
 

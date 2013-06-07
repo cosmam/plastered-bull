@@ -26,15 +26,21 @@ namespace Time
 		NOV,
 		DEC
 	};
-	
+
+    /// Convers an int to a month
 	Time::Month ToMonth( int month );
+
+    /// Converts a month to an int
 	int ToInt( Time::Month month );
+
+    /// Converts a month to a QString
 	QString ToString( Time::Month month );
 	
 }
 
+/// QDataStream input operator
 QDataStream & operator>>(QDataStream & in, Time::Month & month);
 
-Q_DECLARE_METATYPE( Time::Month );
+Q_DECLARE_METATYPE( Time::Month )
 
 #endif // TIMEFUNCTIONS_H

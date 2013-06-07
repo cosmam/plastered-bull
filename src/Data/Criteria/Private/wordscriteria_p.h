@@ -4,33 +4,36 @@
 #include "criteria_p.h"
 #include "wordscriteria.h"
 
-namespace UI
-{
+namespace UI {
     class WordsCriteriaWidget;
 }
 
-namespace Data
-{
+namespace Data {
 
-class WordsCriteria;
+    class WordsCriteria;
 
-class WordsCriteriaPrivate : public CriteriaPrivate
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(Data::WordsCriteria);
-    Q_DISABLE_COPY(WordsCriteriaPrivate);
+    class WordsCriteriaPrivate : public CriteriaPrivate
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(Data::WordsCriteria)
+        Q_DISABLE_COPY(WordsCriteriaPrivate)
 
-public:
-    explicit WordsCriteriaPrivate();
-    ~WordsCriteriaPrivate();
-    
-    void init();
+    public:
 
-	int m_words;
-	
-public Q_SLOTS:
+        /// Default constructor
+        explicit WordsCriteriaPrivate();
 
-};
+        /// Destructor
+        ~WordsCriteriaPrivate();
+
+        /// Function to initialize this class
+        void init();
+
+        int m_words;
+
+    public Q_SLOTS:
+
+    };
 
 }
 

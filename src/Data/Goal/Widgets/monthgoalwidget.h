@@ -4,32 +4,48 @@
 #include "goalwidgetbase.h"
 #include "timefunctions.h"
 
-namespace UI
-{
+namespace Test {
+    class MonthGoalWidgetTest;
+}
 
-class MonthGoalWidgetPrivate;
+namespace UI {
 
-class MonthGoalWidget : public UI::GoalWidgetBase
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(UI::MonthGoalWidget);
-    
-public:
-    explicit MonthGoalWidget(QWidget * parent = NULL);
-    ~MonthGoalWidget();
+    class MonthGoalWidgetPrivate;
 
-    void SetupWidget( const Data::Goal * inGoal );
+    class MonthGoalWidget : public UI::GoalWidgetBase
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(UI::MonthGoalWidget)
+        Q_DISABLE_COPY(MonthGoalWidget)
 
-    QString Name() const;
-	QColor Color() const;
-	Time::Month Month() const;
-	int Year() const;
+    public:
 
-private:
+        /// Default constructor
+        explicit MonthGoalWidget(QWidget * parent = NULL);
 
-    Q_DISABLE_COPY(MonthGoalWidget);
-    MonthGoalWidgetPrivate * const d_ptr;
-};
+        /// Destructor
+        ~MonthGoalWidget();
+
+        /// Sets up the widget based on the goal data
+        void SetupWidget( const Data::Goal * inGoal );
+
+        /// Gets the goal name
+        QString Name() const;
+
+        /// Gets the goal color
+        QColor Color() const;
+
+        /// Gets the goal month
+        Time::Month Month() const;
+
+        /// Gets the goal year
+        int Year() const;
+
+    private:
+
+        friend class Test::MonthGoalWidgetTest;
+        MonthGoalWidgetPrivate * const d_ptr;
+    };
 
 }
 

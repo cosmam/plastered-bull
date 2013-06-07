@@ -6,6 +6,13 @@
 
 using namespace UI;
 
+/**
+ * @author Cosmam
+ * @name CalendarDay
+ * @namespace UI
+ * @brief Default controller
+ * @param parent: The parent widget
+ **/
 CalendarDay::CalendarDay(QWidget *parent) :
     GoalCalendarItem(*new UI::CalendarDayPrivate, parent)
 {
@@ -16,10 +23,23 @@ CalendarDay::CalendarDay(QWidget *parent) :
     d->PositionWidgets();
 }
 
+/**
+ * @author Cosmam
+ * @name ~CalendarDay
+ * @namespace UI
+ * @brief Destructor
+ **/
 CalendarDay::~CalendarDay()
 {
 }
 
+/**
+ * @author Cosmam
+ * @name SetDay
+ * @namespace UI
+ * @brief Sets the day
+ * @param day
+ **/
 void CalendarDay::SetDay(int day)
 {
     Q_D(UI::CalendarDay);
@@ -32,12 +52,27 @@ void CalendarDay::SetDay(int day)
 	}
 }
 
+/**
+ * @author Cosmam
+ * @name AddGoal
+ * @namespace UI
+ * @brief Adds a goal to the day
+ * @param goal: The goal to add
+ * @param index: The index to add it at
+ **/
 void CalendarDay::AddGoal(Data::Goal *goal, int index)
 {
     Q_UNUSED(goal);
     Q_UNUSED(index);
 }
 
+/**
+ * @author Cosmam
+ * @name resizeEvent
+ * @namespace UI
+ * @brief Reimplemented resize event
+ * @param e: The resize event
+ **/
 void CalendarDay::resizeEvent(QResizeEvent * e)
 {
     Q_UNUSED(e);
@@ -47,28 +82,59 @@ void CalendarDay::resizeEvent(QResizeEvent * e)
 
 /**************** Private Class ***************/
 
+/**
+ * @author Cosmam
+ * @name CalendarDayPrivate
+ * @namespace UI
+ * @brief Default constructor
+ **/
 CalendarDayPrivate::CalendarDayPrivate() :
     GoalCalendarItemPrivate(),
     m_ui(new Ui::CalendarDay)
 {
 }
 
+/**
+ * @author Cosmam
+ * @name ~CalendarDayPrivate
+ * @namespace UI
+ * @brief Destructor
+ **/
 CalendarDayPrivate::~CalendarDayPrivate()
 {
     delete m_ui;
 }
 
+/**
+ * @author Cosmam
+ * @name SetDayLabel
+ * @namespace UI
+ * @brief Sets the day label
+ * @param label: The day label
+ **/
 void CalendarDayPrivate::SetDayLabel( const QString & label )
 {
     m_ui->day_Label->setText( label );
 }
 
+/**
+ * @author Cosmam
+ * @name init
+ * @namespace UI
+ * @brief Initializes this class
+ **/
 void CalendarDayPrivate::init()
 {
     Q_Q(UI::CalendarDay);
     m_ui->setupUi(q);
 }
 
+/**
+ * @author Cosmam
+ * @name PositionWidget
+ * @namespace UI
+ * @brief Position this widget's widgets
+ **/
 void CalendarDayPrivate::PositionWidgets()
 {
     Q_Q(UI::CalendarDay);

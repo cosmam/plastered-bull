@@ -3,31 +3,35 @@
 
 #include <QWidget>
 
-namespace Data
-{
+namespace Data {
 	class Criteria;
 }
 
-namespace UI
-{
+namespace UI {
 
-class CriteriaWidgetBase : public QWidget
-{
-    Q_OBJECT
-public:
-    explicit CriteriaWidgetBase(QWidget *parent = 0);
-    
-    virtual ~CriteriaWidgetBase() {};
+    class CriteriaWidgetBase : public QWidget
+    {
+        Q_OBJECT
 
-    virtual void SetupWidget( const Data::Criteria * inCriteria ) = 0;
+    public:
 
-public Q_SLOTS:
+        /// Default constructor
+        explicit CriteriaWidgetBase(QWidget *parent = 0);
 
-	virtual bool isValid() const = 0;
+        /// Virtual destructor
+        virtual ~CriteriaWidgetBase() {}
 
-Q_SIGNALS:
-    
-};
+        /// Virtual function to setup this widget
+        virtual void SetupWidget( const Data::Criteria * inCriteria ) = 0;
+
+    public Q_SLOTS:
+
+        /// Virtual slot to determine if information is valid
+        virtual bool isValid() const = 0;
+
+    Q_SIGNALS:
+
+    };
 
 }
 

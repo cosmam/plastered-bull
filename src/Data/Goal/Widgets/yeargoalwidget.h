@@ -3,31 +3,45 @@
 
 #include "goalwidgetbase.h"
 
-namespace UI
-{
+namespace Test {
+    class YearGoalWidgetTest;
+}
 
-class YearGoalWidgetPrivate;
+namespace UI {
 
-class YearGoalWidget : public UI::GoalWidgetBase
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(UI::YearGoalWidget);
-    
-public:
-    explicit YearGoalWidget(QWidget * parent = NULL);
-    ~YearGoalWidget();
+    class YearGoalWidgetPrivate;
 
-    void SetupWidget( const Data::Goal * inGoal );
+    class YearGoalWidget : public UI::GoalWidgetBase
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(UI::YearGoalWidget)
+        Q_DISABLE_COPY(YearGoalWidget)
 
-    QString Name() const;
-	QColor Color() const;
-	int Year() const;
+    public:
 
-private:
+        /// Default constructor
+        explicit YearGoalWidget(QWidget * parent = NULL);
 
-    Q_DISABLE_COPY(YearGoalWidget);
-    YearGoalWidgetPrivate * const d_ptr;
-};
+        /// Destructor
+        ~YearGoalWidget();
+
+        /// Sets this widget up based on the goal data
+        void SetupWidget( const Data::Goal * inGoal );
+
+        /// Gets the goal name
+        QString Name() const;
+
+        /// Gets the goal color
+        QColor Color() const;
+
+        /// Gets the goal year
+        int Year() const;
+
+    private:
+
+        friend class Test::YearGoalWidgetTest;
+        YearGoalWidgetPrivate * const d_ptr;
+    };
 
 }
 

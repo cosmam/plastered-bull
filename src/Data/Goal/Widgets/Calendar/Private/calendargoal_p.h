@@ -5,32 +5,35 @@
 #include "calendargoal.h"
 
 namespace Ui {
-class CalendarGoal;
+    class CalendarGoal;
 }
 
-namespace UI
-{
+namespace UI {
 
-class CalendarGoal;
+    class CalendarGoal;
 
-class CalendarGoalPrivate : public GoalCalendarItemPrivate
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(UI::CalendarGoal);
+    class CalendarGoalPrivate : public GoalCalendarItemPrivate
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(UI::CalendarGoal)
+        Q_DISABLE_COPY(CalendarGoalPrivate)
 
-public:
-    explicit CalendarGoalPrivate();
-    ~CalendarGoalPrivate();
+    public:
 
-    void init();
+        /// Default constructor
+        explicit CalendarGoalPrivate();
 
-    Ui::CalendarGoal * const m_ui;
-    
-    Q_DISABLE_COPY(CalendarGoalPrivate);
+        /// Destructor
+        ~CalendarGoalPrivate();
 
-public Q_SLOTS:
+        /// Initializes this widget
+        void init();
 
-};
+        Ui::CalendarGoal * const m_ui;
+
+    public Q_SLOTS:
+
+    };
 
 }
 

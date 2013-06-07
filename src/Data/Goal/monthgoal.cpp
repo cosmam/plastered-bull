@@ -5,6 +5,13 @@
 
 using namespace Data;
 
+/**
+ * @author Cosmam
+ * @name MonthGoal
+ * @namespace Data
+ * @brief Default constructor
+ * @param parent: The parent object
+ **/
 MonthGoal::MonthGoal(QObject *parent) :
     Goal(*new Data::MonthGoalPrivate, parent)
 {
@@ -14,10 +21,23 @@ MonthGoal::MonthGoal(QObject *parent) :
     d->init();
 }
 
+/**
+ * @author Cosmam
+ * @name ~MonthGoal
+ * @namespace Data
+ * @brief Destructor
+ **/
 MonthGoal::~MonthGoal()
 {
 }
 
+/**
+ * @author Cosmam
+ * @name start
+ * @namespace Data
+ * @brief The goal start datetime
+ * @return The start datetime
+ **/
 QDateTime MonthGoal::start() const
 {
     Q_D(const Data::MonthGoal);
@@ -26,6 +46,13 @@ QDateTime MonthGoal::start() const
 	return QDateTime( date, Time::startTime );
 }
 
+/**
+ * @author Cosmam
+ * @name end
+ * @namespace Data
+ * @brief The goal end datetime
+ * @return The end datetime
+ **/
 QDateTime MonthGoal::end() const
 {
     Q_D(const Data::MonthGoal);
@@ -35,6 +62,13 @@ QDateTime MonthGoal::end() const
 	return QDateTime( date, Time::endTime );
 }
 
+/**
+ * @author Cosmam
+ * @name setMonth
+ * @namespace Data
+ * @brief Sets the goal month
+ * @param month: An enum representing the goal month
+ **/
 void MonthGoal::setMonth( Time::Month month )
 {
     Q_D(Data::MonthGoal);
@@ -44,12 +78,26 @@ void MonthGoal::setMonth( Time::Month month )
     }
 }
 
+/**
+ * @author Cosmam
+ * @name month
+ * @namespace Data
+ * @brief Gets the goal month
+ * @return The goal month enum
+ */
 Time::Month MonthGoal::month() const
 {
     Q_D(const Data::MonthGoal);
     return d->month;
 }
 	
+/**
+ * @author Cosmam
+ * @name setYear
+ * @namespace Data
+ * @brief Sets the goal year
+ * @param year: The goal year
+ **/
 void MonthGoal::setYear( int year )
 {
     Q_D(Data::MonthGoal);
@@ -59,12 +107,26 @@ void MonthGoal::setYear( int year )
     }
 }
 
+/**
+ * @author Cosmam
+ * @name month
+ * @namespace Data
+ * @brief Gets the goal year
+ * @return The goal year
+ */
 int MonthGoal::year() const
 {
     Q_D(const Data::MonthGoal);
     return d->year;
 }
 
+/**
+ * @author Cosmam
+ * @name CreateWidget
+ * @namespace Data
+ * @brief Creates the goal widget based on this goal
+ * @return The goal widget
+ */
 UI::GoalWidgetBase *MonthGoal::CreateWidget()
 {
     Q_D(Data::MonthGoal);
@@ -81,6 +143,12 @@ UI::GoalWidgetBase *MonthGoal::CreateWidget()
 
 /**************** Private Class ***************/
 
+/**
+ * @author Cosmam
+ * @name MonthGoalPrivate
+ * @namespace Data
+ * @brief Default constructor
+ **/
 MonthGoalPrivate::MonthGoalPrivate() :
     GoalPrivate(),
     month(Time::ToMonth(QDate::currentDate().month())),
@@ -88,10 +156,22 @@ MonthGoalPrivate::MonthGoalPrivate() :
 {
 }
 
+/**
+ * @author Cosmam
+ * @name ~MonthGoalPrivate
+ * @namespace Data
+ * @brief Destructor
+ **/
 MonthGoalPrivate::~MonthGoalPrivate()
 {
 }
 
+/**
+ * @author Cosmam
+ * @name init
+ * @namespace Data
+ * @brief Initializes this object
+ **/
 void MonthGoalPrivate::init()
 {
     Q_Q(Data::MonthGoal);
@@ -105,6 +185,12 @@ void MonthGoalPrivate::init()
              this, SLOT( OnDataUpdated() ) );
 }
 
+/**
+ * @author Cosmam
+ * @name WidgetChangesAccepted
+ * @namespace Data
+ * @brief Slot called when the widget changes are accepted to process the new data
+ **/
 void MonthGoalPrivate::WidgetChangesAccepted()
 {
     if( widget == NULL )
@@ -129,6 +215,12 @@ void MonthGoalPrivate::WidgetChangesAccepted()
     }
 }
 
+/**
+ * @author Cosmam
+ * @name OnDataUpdated
+ * @namespace Data
+ * @brief Slot called when data is updated, to emit the goal goalChanged signal
+ **/
 void MonthGoalPrivate::OnDataUpdated()
 {
     Q_Q(Data::MonthGoal);
@@ -137,34 +229,46 @@ void MonthGoalPrivate::OnDataUpdated()
 
 /************* External Functions *************/
 
+/**
+ * @author Cosmam
+ * @name operator<<
+ * @brief Outputs a monthgoal to QDataStream
+ * @param out: The QDataStream output stream
+ * @param goal: The goal to output data for
+ * @return A reference to the output stream
+ **/
 QDataStream & operator<<(QDataStream & out, const MonthGoal & goal)
 {
     out << goal.name();
     out << goal.color();
-//    out << goal.criteria();
     out << qint32( goal.month() );
     out << qint32( goal.year() );
 
     return out;
 }
 
+/**
+ * @author Cosmam
+ * @name operator>>
+ * @brief Inputs a monthgoal from QDataStream
+ * @param in: The QDataStream input stream
+ * @param goal: The goal to populate
+ * @return A reference to the input stream
+ **/
 QDataStream & operator>>(QDataStream & in, MonthGoal & goal)
 {
     QString name;
     QColor color;
-//    Data::Criteria criteria;
     Time::Month month;
     qint32 year;
 
     in >> name;
     in >> color;
-//    in >> criteria;
     in >> month;
     in >> year;
 
     goal.setName( name );
     goal.setColor( color );
-//    goal.setCriteria( criteria );
     goal.setMonth( month );
     goal.setYear( int(year) );
 

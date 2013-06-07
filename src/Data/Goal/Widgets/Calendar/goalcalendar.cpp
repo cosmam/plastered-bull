@@ -14,17 +14,37 @@
 
 using namespace UI;
 
+/**
+ * @author Cosmam
+ * @name GoalCalendar
+ * @namespace UI
+ * @brief Default constructor
+ * @param parent: The parent widget
+ **/
 GoalCalendar::GoalCalendar(QWidget *parent) :
     QWidget(parent),
     d_ptr( new GoalCalendarPrivate( this ) )
 {
 }
 
+/**
+ * @author Cosmam
+ * @name ~GoalCalendar
+ * @namespace UI
+ * @brief Destructor
+ **/
 GoalCalendar::~GoalCalendar()
 {
     delete d_ptr;
 }
 
+/**
+ * @author Cosmam
+ * @name SetGoals
+ * @namespace UI
+ * @brief Sets the list of goals
+ * @param goals: The list of goals
+ **/
 void GoalCalendar::SetGoals( const QList<Data::Goal *> goals )
 {
     Q_D(UI::GoalCalendar);
@@ -36,6 +56,13 @@ void GoalCalendar::SetGoals( const QList<Data::Goal *> goals )
 	}
 }
 
+/**
+ * @author Cosmam
+ * @name RemoveGoal
+ * @namespace UI
+ * @brief Slot to remove a goal
+ * @param goal: The remove a goal
+ **/
 void GoalCalendar::RemoveGoal( Data::Goal * goal )
 {
     Q_D(UI::GoalCalendar);
@@ -44,13 +71,27 @@ void GoalCalendar::RemoveGoal( Data::Goal * goal )
 
 	// processing to remove widgets
 }
-	
+
+/**
+ * @author Cosmam
+ * @name UpdateGoal
+ * @namespace UI
+ * @brief Slot to update a goal
+ * @param goal: The goal to update
+ **/
 void GoalCalendar::UpdateGoal( Data::Goal * goal )
 {
     Q_UNUSED(goal);
 	// processing to update widgets
 }
-	
+
+/**
+ * @author Cosmam
+ * @name AddGoal
+ * @namespace UI
+ * @brief Slot to add a goal
+ * @param goal: The goal to add
+ **/
 void GoalCalendar::AddGoal( Data::Goal * goal )
 {
     Q_D(UI::GoalCalendar);
@@ -63,6 +104,13 @@ void GoalCalendar::AddGoal( Data::Goal * goal )
 
 /**************** Private Class ***************/
 
+/**
+ * @author Cosmam
+ * @name GoalCalendarPrivate
+ * @namespace UI
+ * @brief Default constructor
+ * @param parent: The parent Goal Calendar
+ **/
 GoalCalendarPrivate::GoalCalendarPrivate(GoalCalendar *parent) :
     QObject(parent),
     model(new UI::CalendarModel(parent)),
@@ -82,11 +130,23 @@ GoalCalendarPrivate::GoalCalendarPrivate(GoalCalendar *parent) :
     MakeConnections();
 }
 
+/**
+ * @author Cosmam
+ * @name ~GoalCalendarPrivate
+ * @namespace UI
+ * @brief Destructor
+ **/
 GoalCalendarPrivate::~GoalCalendarPrivate()
 {
     delete ui;
 }
 
+/**
+ * @author Cosmam
+ * @name MakeConnections
+ * @namespace UI
+ * @brief Makes the goal connections for this widget
+ **/
 void GoalCalendarPrivate::MakeConnections()
 {
     connect( ui->month_ComboBox, SIGNAL( currentIndexChanged(int) ),
@@ -109,6 +169,13 @@ void GoalCalendarPrivate::MakeConnections()
              this, SLOT(SetUpdatesEnabled(bool)));
 }
 
+/**
+ * @author Cosmam
+ * @name MakeGoalConnections
+ * @namespace UI
+ * @brief Makes the connections for a given goal
+ * @param goal: The goal to make connections for
+ **/
 void GoalCalendarPrivate::MakeGoalConnections( Data::Goal * goal )
 {
     Q_Q(UI::GoalCalendar);
@@ -121,6 +188,13 @@ void GoalCalendarPrivate::MakeGoalConnections( Data::Goal * goal )
              Qt::UniqueConnection );
 }
 
+/**
+ * @author Cosmam
+ * @name OnDestroyed
+ * @namespace UI
+ * @brief Slot called when a goal is destroyed
+ * @param object: The destroyed goal
+ **/
 void GoalCalendarPrivate::OnDestroyed( QObject * object )
 {
     Data::Goal * goal = qobject_cast<Data::Goal *>(object);
@@ -132,6 +206,13 @@ void GoalCalendarPrivate::OnDestroyed( QObject * object )
     }
 }
 
+/**
+ * @author Cosmam
+ * @name OnMonthChanged
+ * @namespace UI
+ * @brief Slot called when the month is changed
+ * @param month: The new month value
+ **/
 void GoalCalendarPrivate::OnMonthChanged( int month )
 {
     manager->ClearData();
@@ -140,6 +221,13 @@ void GoalCalendarPrivate::OnMonthChanged( int month )
     manager->SetModel(model);
 }
 
+/**
+ * @author Cosmam
+ * @name OnYearChanged
+ * @namespace UI
+ * @brief Slot called when the year is changed
+ * @param year: the new year
+ **/
 void GoalCalendarPrivate::OnYearChanged( QString year )
 {
     manager->ClearData();
@@ -148,6 +236,12 @@ void GoalCalendarPrivate::OnYearChanged( QString year )
     manager->SetModel(model);
 }
 
+/**
+ * @author Cosmam
+ * @name OnCustomGoalClicked
+ * @namespace UI
+ * @brief Slot called when the custom goal button is clicked
+ **/
 void GoalCalendarPrivate::OnCustomGoalClicked()
 {
     if( goalDialog ) {
@@ -162,6 +256,12 @@ void GoalCalendarPrivate::OnCustomGoalClicked()
     CreateDialog(goal);
 }
 
+/**
+ * @author Cosmam
+ * @name OnDayGoalClicked
+ * @namespace UI
+ * @brief Slot called when the day goal button is clicked
+ **/
 void GoalCalendarPrivate::OnDayGoalClicked()
 {
     if( goalDialog ) {
@@ -176,6 +276,12 @@ void GoalCalendarPrivate::OnDayGoalClicked()
     CreateDialog(goal);
 }
 
+/**
+ * @author Cosmam
+ * @name OnMonthGoalClicked
+ * @namespace UI
+ * @brief Slot called when the month goal button is clicked
+ **/
 void GoalCalendarPrivate::OnMonthGoalClicked()
 {
     if( goalDialog ) {
@@ -190,6 +296,12 @@ void GoalCalendarPrivate::OnMonthGoalClicked()
     CreateDialog(goal);
 }
 
+/**
+ * @author Cosmam
+ * @name OnWeekGoalClicked
+ * @namespace UI
+ * @brief Slot called when the week goal button is clicked
+ **/
 void GoalCalendarPrivate::OnWeekGoalClicked()
 {
     if( goalDialog ) {
@@ -204,6 +316,12 @@ void GoalCalendarPrivate::OnWeekGoalClicked()
     CreateDialog(goal);
 }
 
+/**
+ * @author Cosmam
+ * @name OnYearGoalClicked
+ * @namespace UI
+ * @brief Slot called when the year goal button is clicked
+ **/
 void GoalCalendarPrivate::OnYearGoalClicked()
 {
     if( goalDialog ) {
@@ -218,6 +336,13 @@ void GoalCalendarPrivate::OnYearGoalClicked()
     CreateDialog(goal);
 }
 
+/**
+ * @author Cosmam
+ * @name CreateDialog
+ * @namespace UI
+ * @brief Creates a dialog from the given goal
+ * @param goal
+ **/
 void GoalCalendarPrivate::CreateDialog( Data::Goal * goal )
 {
     Q_Q(UI::GoalCalendar);
@@ -245,16 +370,34 @@ void GoalCalendarPrivate::CreateDialog( Data::Goal * goal )
     goalDialog->show();
 }
 
+/**
+ * @author Cosmam
+ * @name OnDialogCanceled
+ * @namespace UI
+ * @brief SlotCalled when the dialog is canceled
+ **/
 void GoalCalendarPrivate::OnDialogCanceled()
 {
     delete newGoal;
 }
 
+/**
+ * @author Cosmam
+ * @name PopulateModel
+ * @namespace UI
+ * @brief Populates the calendar model
+ **/
 void GoalCalendarPrivate::PopulateModel()
 {
     model->SetCalendarReference(ui->calendarMonth);
 }
-
+/**
+ * @author Cosmam
+ * @name StUpdatesEnabled
+ * @namespace UI
+ * @brief Sets whether updates are enabled/disbled
+ * @param enabled: Whether or not updates are enabled
+ **/
 void GoalCalendarPrivate::SetUpdatesEnabled(bool enabled)
 {
     Q_Q(UI::GoalCalendar);

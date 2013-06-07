@@ -8,49 +8,63 @@
 class QColorDialog;
 
 namespace Ui {
-class YearGoalWidget;
+    class YearGoalWidget;
 }
 
-namespace Data
-{
+namespace Data {
     class YearGoal;
 }
 
-namespace UI
-{
+namespace UI {
 
-class YearGoalWidget;
+    class YearGoalWidget;
 
-class YearGoalWidgetPrivate : public QObject
-{
-    Q_OBJECT
-    Q_DECLARE_PUBLIC(UI::YearGoalWidget);
+    class YearGoalWidgetPrivate : public QObject
+    {
+        Q_OBJECT
+        Q_DECLARE_PUBLIC(UI::YearGoalWidget)
+        Q_DISABLE_COPY(YearGoalWidgetPrivate)
 
-public:
-    explicit YearGoalWidgetPrivate(YearGoalWidget *parent);
-    ~YearGoalWidgetPrivate();
+    public:
 
-    QColor color;
-    QPointer<QColorDialog> colorDialog;
+        /// Default constructor
+        explicit YearGoalWidgetPrivate(YearGoalWidget *parent);
 
-    void SetupWidget( const Data::YearGoal * goal );
+        /// Destructor
+        ~YearGoalWidgetPrivate();
 
-    QString Name() const;
-    int Year() const;
+        /// Sets up this widget based on the goal data
+        void SetupWidget( const Data::YearGoal * goal );
 
-    Ui::YearGoalWidget * const ui;
-    UI::YearGoalWidget * const q_ptr;
+        /// Gets the goal name
+        QString Name() const;
 
-    Q_DISABLE_COPY(YearGoalWidgetPrivate);
+        /// Gets the goal year
+        int Year() const;
 
-public Q_SLOTS:
+        /// Sets the widget data to defaults
+        void SetToDefaults();
 
-    void OnColorSelected( const QColor & inColor );
+        QColor color;
+        QPointer<QColorDialog> colorDialog;
 
-    void OnColorButtonClicked();
-    void OnCancelClicked();
-    void OnAcceptClicked();
-};
+        Ui::YearGoalWidget * const ui;
+        UI::YearGoalWidget * const q_ptr;
+
+    public Q_SLOTS:
+
+        /// Slot called on color selected
+        void OnColorSelected( const QColor & inColor );
+
+        /// Slot called on color button clicked
+        void OnColorButtonClicked();
+
+        /// Slot called on cancel clicked
+        void OnCancelClicked();
+
+        /// Slot called on accept clicked
+        void OnAcceptClicked();
+    };
 
 }
 

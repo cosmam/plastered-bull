@@ -3,29 +3,31 @@
 
 #include "goalcalendaritem.h"
 
-namespace Data
-{
+namespace Data {
     class Goal;
 }
 
-namespace UI
-{
+namespace UI {
 
-class CalendarGoalPrivate;
+    class CalendarGoalPrivate;
 
-class CalendarGoal : public GoalCalendarItem
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(UI::CalendarGoal);
-    Q_DISABLE_COPY(CalendarGoal);
+    class CalendarGoal : public GoalCalendarItem
+    {
+        Q_OBJECT
+        Q_DECLARE_PRIVATE(UI::CalendarGoal)
+        Q_DISABLE_COPY(CalendarGoal)
 
-public:
-    explicit CalendarGoal(QWidget *parent = 0);
-    ~CalendarGoal();
+    public:
 
-public Q_SLOTS:
+        /// Default constructor
+        explicit CalendarGoal(QWidget *parent = 0);
 
-};
+        /// Destructor
+        ~CalendarGoal();
+
+    public Q_SLOTS:
+
+    };
 
 }
 

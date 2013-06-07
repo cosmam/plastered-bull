@@ -10,6 +10,9 @@ namespace Data
     class DayGoal;
 }
 
+namespace Test
+{
+
 class DayGoalTest : public QObject
 {
         Q_OBJECT
@@ -34,5 +37,7 @@ class DayGoalTest : public QObject
         void TestDate_data();
         void TestDate();
 };
+
+}
 
 #endif // DAYGOALTEST_H

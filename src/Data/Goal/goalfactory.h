@@ -3,16 +3,17 @@
 
 class QObject;
 
-namespace Data
-{
+namespace Data {
 
-class Goal;
+    class Goal;
 
-class GoalFactory
-{
-public:
-    static Data::Goal * CreateGoal( int type, QObject * parent = 0 );
-};
+    class GoalFactory
+    {
+    public:
+
+        /// Static function to create a goal
+        static Data::Goal * CreateGoal( int type, QObject * parent = 0 );
+    };
 
 }
 
