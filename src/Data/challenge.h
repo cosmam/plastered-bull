@@ -11,7 +11,7 @@ namespace Data {
 
     class Challenge : public QObject
     {
-        Q_OBJECT
+        Q_OBJECT                            // LCOV_EXCL_LINE
         Q_DECLARE_PRIVATE(Data::Challenge)
         Q_DISABLE_COPY(Challenge)
 
@@ -21,7 +21,7 @@ namespace Data {
         explicit Challenge(QObject * parent = 0);
 
         /// Virtual destructor
-        virtual ~Challenge() {}
+        virtual ~Challenge() {}     // LCOV_EXCL_LINE
 
         /// Virtual function to get the goal start datetime
         virtual QDateTime start() const = 0;

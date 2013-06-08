@@ -5,37 +5,36 @@
 #include <QPointer>
 #include <QtTest>
 
-namespace Test
-{
+namespace Test {
 
-class GoalMock;
+    class GoalMock;
 
-class GoalTest : public QObject
-{
-        Q_OBJECT
+    class GoalTest : public QObject
+    {
+            Q_OBJECT
 
-    public:
-        explicit GoalTest(QObject *parent = 0);
+        public:
+            explicit GoalTest(QObject *parent = 0);
 
-    signals:
-        
-    public slots:
+        signals:
 
-    private:
-        QPointer<Test::GoalMock> m_goal;
+        public slots:
 
-    private Q_SLOTS:
+        private:
+            QPointer<Test::GoalMock> m_goal;
 
-        void initTestCase();
-        void cleanupTestCase();
-        void init();
-        void cleanup();
+        private Q_SLOTS:
 
-        void TestName_data();
-        void TestName();
-        void TestColor_data();
-        void TestColor();
-};
+            void initTestCase();
+            void cleanupTestCase();
+            void init();
+            void cleanup();
+
+            void TestName_data();
+            void TestName();
+            void TestColor_data();
+            void TestColor();
+    };
 
 }
 

@@ -24,7 +24,7 @@ namespace Data {
         explicit CriteriaPrivate();
 
         /// Virtual destructor
-        virtual ~CriteriaPrivate() {}
+        virtual ~CriteriaPrivate() {}      // LCOV_EXCL_LINE
 
         /// Virtual function to inititialize class
         virtual void init();

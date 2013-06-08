@@ -62,15 +62,15 @@ int TestChasis::RunTests()
         testStatus = QTest::qExec(object);
 
         if( testStatus != 0 ) {
-            m_errors.append( QString( object->metaObject()->className() ) );
+            m_errors.append( QString( object->metaObject()->className() ) );        // LCOV_EXCL_LINE
         }
 
         m_status |= testStatus;
     }
 
     if( !m_errors.isEmpty() ) {
-        qWarning() << "********** Testing Results!**********\n\nErrors in the following classes:" << m_errors
-                   << "\n\n*************************************";
+        qWarning() << "********** Testing Results!**********\n\nErrors in the following classes:" << m_errors       // LCOV_EXCL_LINE
+                   << "\n\n*************************************";                                                  // LCOV_EXCL_LINE
     } else {
         qWarning() << "********** Testing Results!**********\n\nAll tests passed!"
                    << "\n\n*************************************";
@@ -82,10 +82,58 @@ int TestChasis::RunTests()
 int TestChasis::RandInt(int lower, int upper)
 {
     if( m_randInit == 0 ) {
-        InitRand();
+        InitRand();                                         // LCOV_EXCL_LINE
     }
 
     return (qrand() % ((upper + 1) - lower) + lower);
+}
+
+QString TestChasis::RandString()
+{
+    if( m_randInit == 0 ) {
+        InitRand();                                         // LCOV_EXCL_LINE
+    }
+
+    QString retString("");
+    int length = RandInt(1,1000);
+
+    for( int i=0 ; i < length ; ++i ) {
+        retString += QChar((ushort)RandInt(10,255));
+    }
+
+    return retString;
+}
+
+QDate TestChasis::RandDate(QDate start, QDate end)
+{
+    if( m_randInit == 0 ) {
+        InitRand();                                         // LCOV_EXCL_LINE
+    }
+
+    QDate date(1,1,1);
+
+    while( !( (start <= date) && (date <= end) ) ) {
+
+        int year = RandInt(start.year(),end.year());
+        int month = RandInt(1,12);
+        int day = RandInt(1, QDate(year, month, 1).daysInMonth());
+        date.setDate(year, month, day);
+    }
+
+    return date;
+}
+
+QColor TestChasis::RandColor()
+{
+    if( m_randInit == 0 ) {
+        InitRand();                                         // LCOV_EXCL_LINE
+    }
+
+    int red = RandInt(0,255);
+    int blue = RandInt(0,255);
+    int green = RandInt(0,255);
+
+    return QColor(red, blue, green);
 }
 
 void TestChasis::RegisterTest(QObject *object)

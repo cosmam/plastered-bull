@@ -19,7 +19,7 @@ namespace UI {
         explicit CriteriaWidgetBase(QWidget *parent = 0);
 
         /// Virtual destructor
-        virtual ~CriteriaWidgetBase() {}
+        virtual ~CriteriaWidgetBase() {}        // LCOV_EXCL_LINE
 
         /// Virtual function to setup this widget
         virtual void SetupWidget( const Data::Criteria * inCriteria ) = 0;

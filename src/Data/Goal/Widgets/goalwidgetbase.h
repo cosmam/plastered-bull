@@ -17,7 +17,7 @@ class GoalWidgetBase : public QWidget
         explicit GoalWidgetBase(QWidget *parent = 0);
 
         /// Virtual destructor
-        virtual ~GoalWidgetBase() {}
+        virtual ~GoalWidgetBase() {}        // LCOV_EXCL_LINE
 
         /// Virtual function to set this widget up based on goal data
         virtual void SetupWidget( const Data::Goal * inGoal ) = 0;

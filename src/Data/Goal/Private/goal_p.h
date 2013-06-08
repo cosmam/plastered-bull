@@ -28,7 +28,7 @@ namespace Data {
         GoalPrivate();
 
         /// Virtual destructor
-        virtual ~GoalPrivate() {}
+        virtual ~GoalPrivate() {}       // LCOV_EXCL_LINE
 
         /// Virtual function to initialize this widget
         virtual void init();

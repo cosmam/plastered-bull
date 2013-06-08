@@ -29,6 +29,8 @@ namespace Test {
             void cleanupTestCase();
             void init();
             void cleanup();
+
+            void TestConstruction();
     };
 
 }

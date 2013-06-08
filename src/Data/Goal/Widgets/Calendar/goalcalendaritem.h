@@ -19,7 +19,7 @@ namespace UI {
         explicit GoalCalendarItem(QWidget *parent = 0);
 
         /// Virtual destructor
-        virtual ~GoalCalendarItem() {}
+        virtual ~GoalCalendarItem() {}      // LCOV_EXCL_LINE
 
     public Q_SLOTS:
 

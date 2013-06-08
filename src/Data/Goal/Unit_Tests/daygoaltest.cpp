@@ -1,6 +1,9 @@
 #include "daygoaltest.h"
 
 #include "daygoal.h"
+#include "daygoalwidget.h"
+#include "goalwidgetbase.h"
+#include "testchasis.h"
 #include "timefunctions.h"
 
 using namespace Test;
@@ -59,4 +62,44 @@ void DayGoalTest::TestDate()
         QCOMPARE(m_goal->end(),QDateTime(QDate::currentDate(),Time::endTime));
     }
 
+}
+
+void DayGoalTest::WidgetTest_data()
+{
+    QTest::addColumn<QString>("name");
+    QTest::addColumn<QColor>("color");
+    QTest::addColumn<QDate>("date");
+
+    for( int i=0 ; i < 10 ; ++i ) {
+        QTest::newRow(qPrintable(QString::number(i))) << TestChasis::RandString()
+                                                      << TestChasis::RandColor()
+                                                      << TestChasis::RandDate();
+    }
+}
+
+void DayGoalTest::WidgetTest()
+{
+    QFETCH(QString, name);
+    QFETCH(QColor, color);
+    QFETCH(QDate, date);
+
+    m_goal->setName(name);
+    m_goal->setColor(color);
+    m_goal->setDate(date);
+
+    UI::GoalWidgetBase * baseWidget = m_goal->CreateWidget();
+    UI::DayGoalWidget * widget = qobject_cast<UI::DayGoalWidget*>(baseWidget);
+
+    QVERIFY( baseWidget != NULL );
+    QVERIFY( widget != NULL );
+
+    if( (baseWidget == NULL) || (widget == NULL)) {
+        return;
+    }
+
+    QCOMPARE(widget->Name(), name);
+    QCOMPARE(widget->Color(), color);
+    QCOMPARE(widget->Date(), date);
+
+    delete baseWidget;
 }

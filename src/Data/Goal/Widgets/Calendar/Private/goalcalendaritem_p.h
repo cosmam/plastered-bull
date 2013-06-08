@@ -18,7 +18,7 @@ namespace UI {
         explicit GoalCalendarItemPrivate();
 
         /// Virtual destructor
-        virtual ~GoalCalendarItemPrivate() {};
+        virtual ~GoalCalendarItemPrivate() {}       // LCOV_EXCL_LINE
 
         /// Virtual function to initialize this widget
         virtual void init();

@@ -17,7 +17,7 @@ namespace Data {
 
     class Goal : public Challenge
     {
-        Q_OBJECT
+        Q_OBJECT                            // LCOV_EXCL_LINE
         Q_DECLARE_PRIVATE(Data::Goal)
         Q_DISABLE_COPY(Goal)
 
@@ -27,7 +27,7 @@ namespace Data {
         Goal( QObject * parent = 0 );
 
         /// Virtual destructor
-        virtual ~Goal() {}
+        virtual ~Goal() {}      // LCOV_EXCL_LINE
 
         /// Sets the goal color
         void setColor( const QColor & color );

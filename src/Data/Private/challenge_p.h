@@ -21,7 +21,7 @@ namespace Data {
         explicit ChallengePrivate();
 
         /// Virtual destructor
-        virtual ~ChallengePrivate() {}
+        virtual ~ChallengePrivate() {}      // LCOV_EXCL_LINE
 
         /// Virtual function to initialize this class
         virtual void init();

@@ -7,40 +7,40 @@
 
 #include "timefunctions.h"
 
-namespace Data
-{
+namespace Data {
     class MonthGoal;
 }
 
-namespace Test
-{
+namespace Test {
 
-class MonthGoalTest : public QObject
-{
-        Q_OBJECT
+    class MonthGoalTest : public QObject
+    {
+            Q_OBJECT
 
-    public:
-        explicit MonthGoalTest(QObject *parent = 0);
+        public:
+            explicit MonthGoalTest(QObject *parent = 0);
 
-    signals:
-        
-    public slots:
+        signals:
 
-    private:
-        QPointer<Data::MonthGoal> m_goal;
+        public slots:
 
-    private Q_SLOTS:
+        private:
+            QPointer<Data::MonthGoal> m_goal;
 
-        void initTestCase();
-        void cleanupTestCase();
-        void init();
-        void cleanup();
+        private Q_SLOTS:
 
-        void TestMonth_data();
-        void TestMonth();
-        void TestYear_data();
-        void TestYear();
-};
+            void initTestCase();
+            void cleanupTestCase();
+            void init();
+            void cleanup();
+
+            void TestMonth_data();
+            void TestMonth();
+            void TestYear_data();
+            void TestYear();
+            void WidgetTest_data();
+            void WidgetTest();
+    };
 
 }
 

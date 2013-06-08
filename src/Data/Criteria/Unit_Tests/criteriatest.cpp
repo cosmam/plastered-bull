@@ -29,3 +29,8 @@ void CriteriaTest::cleanup()
 {
     delete m_criteria;
 }
+
+void CriteriaTest::TestConstruction()
+{
+    QVERIFY( m_criteria != NULL );
+}

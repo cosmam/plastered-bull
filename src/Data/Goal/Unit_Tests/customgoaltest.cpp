@@ -1,6 +1,9 @@
 #include "customgoaltest.h"
 
 #include "customgoal.h"
+#include "customgoalwidget.h"
+#include "goalwidgetbase.h"
+#include "testchasis.h"
 #include "timefunctions.h"
 
 using namespace Test;
@@ -83,4 +86,49 @@ void CustomGoalTest::TestDuration()
         QCOMPARE(m_goal->duration(), 0);
         QCOMPARE(m_goal->end(),QDateTime(QDate::currentDate(),Time::endTime));
     }
+}
+
+void CustomGoalTest::WidgetTest_data()
+{
+    QTest::addColumn<QString>("name");
+    QTest::addColumn<QColor>("color");
+    QTest::addColumn<QDate>("startDate");
+    QTest::addColumn<int>("duration");
+
+    for( int i=0 ; i < 10 ; ++i ) {
+        QTest::newRow(qPrintable(QString::number(i))) << TestChasis::RandString()
+                                                      << TestChasis::RandColor()
+                                                      << TestChasis::RandDate()
+                                                      << TestChasis::RandInt(1,100);
+    }
+}
+
+void CustomGoalTest::WidgetTest()
+{
+    QFETCH(QString, name);
+    QFETCH(QColor, color);
+    QFETCH(QDate, startDate);
+    QFETCH(int, duration);
+
+    m_goal->setName(name);
+    m_goal->setColor(color);
+    m_goal->setStartDate(startDate);
+    m_goal->setDuration(duration);
+
+    UI::GoalWidgetBase * baseWidget = m_goal->CreateWidget();
+    UI::CustomGoalWidget * widget = qobject_cast<UI::CustomGoalWidget*>(baseWidget);
+
+    QVERIFY( baseWidget != NULL );
+    QVERIFY( widget != NULL );
+
+    if( (baseWidget == NULL) || (widget == NULL)) {
+        return;
+    }
+
+    QCOMPARE(widget->Name(), name);
+    QCOMPARE(widget->Color(), color);
+    QCOMPARE(widget->StartDate(), startDate);
+    QCOMPARE(widget->Duration(), duration);
+
+    delete baseWidget;
 }

@@ -20,7 +20,7 @@ namespace UI {
         explicit SelectableWidgetPrivate();
 
         /// Virtual Destructor
-        virtual ~SelectableWidgetPrivate() {}
+        virtual ~SelectableWidgetPrivate() {}       // LCOV_EXCL_LINE
 
         /// Virtual function to initialize the widget
         virtual void init();

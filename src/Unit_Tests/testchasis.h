@@ -3,6 +3,7 @@
 
 #include <QObject>
 
+#include <QDate>
 #include <QStringList>
 
 namespace Test
@@ -19,7 +20,10 @@ class TestChasis : public QObject
 
         int RunTests();
 
-        static int RandInt(int lower, int upper);
+        static int RandInt(int lower=0, int upper=1000000);
+        static QString RandString();
+        static QDate RandDate(QDate start = QDate(2000,1,1), QDate end = QDate(2100,12,31));
+        static QColor RandColor();
 
     signals:
         

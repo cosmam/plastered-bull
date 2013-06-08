@@ -1,7 +1,10 @@
 #include "yeargoaltest.h"
 
-#include "yeargoal.h"
+#include "goalwidgetbase.h"
+#include "testchasis.h"
 #include "timefunctions.h"
+#include "yeargoal.h"
+#include "yeargoalwidget.h"
 
 using namespace Test;
 
@@ -58,4 +61,44 @@ void YearGoalTest::TestYear()
         QCOMPARE(m_goal->start(),QDateTime(QDate(QDate::currentDate().year(),1,1),Time::startTime));
         QCOMPARE(m_goal->end(),QDateTime(QDate(QDate::currentDate().year(),12,31),Time::endTime));
     }
+}
+
+void YearGoalTest::WidgetTest_data()
+{
+    QTest::addColumn<QString>("name");
+    QTest::addColumn<QColor>("color");
+    QTest::addColumn<int>("year");
+
+    for( int i=0 ; i < 10 ; ++i ) {
+        QTest::newRow(qPrintable(QString::number(i))) << TestChasis::RandString()
+                                                      << TestChasis::RandColor()
+                                                      << TestChasis::RandInt(2010,2100);
+    }
+}
+
+void YearGoalTest::WidgetTest()
+{
+    QFETCH(QString, name);
+    QFETCH(QColor, color);
+    QFETCH(int, year);
+
+    m_goal->setName(name);
+    m_goal->setColor(color);
+    m_goal->setYear(year);
+
+    UI::GoalWidgetBase * baseWidget = m_goal->CreateWidget();
+    UI::YearGoalWidget * widget = qobject_cast<UI::YearGoalWidget*>(baseWidget);
+
+    QVERIFY( baseWidget != NULL );
+    QVERIFY( widget != NULL );
+
+    if( (baseWidget == NULL) || (widget == NULL)) {
+        return;
+    }
+
+    QCOMPARE(widget->Name(), name);
+    QCOMPARE(widget->Color(), color);
+    QCOMPARE(widget->Year(), year);
+
+    delete baseWidget;
 }

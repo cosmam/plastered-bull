@@ -1,7 +1,10 @@
 #include "weekgoaltest.h"
 
-#include "weekgoal.h"
+#include "goalwidgetbase.h"
+#include "testchasis.h"
 #include "timefunctions.h"
+#include "weekgoal.h"
+#include "weekgoalwidget.h"
 
 using namespace Test;
 
@@ -59,4 +62,44 @@ void WeekGoalTest::TestStart()
         QCOMPARE(m_goal->end(), QDateTime(QDate::currentDate().addDays(7),Time::endTime));
     }
 
+}
+
+void WeekGoalTest::WidgetTest_data()
+{
+    QTest::addColumn<QString>("name");
+    QTest::addColumn<QColor>("color");
+    QTest::addColumn<QDate>("startDate");
+
+    for( int i=0 ; i < 10 ; ++i ) {
+        QTest::newRow(qPrintable(QString::number(i))) << TestChasis::RandString()
+                                                      << TestChasis::RandColor()
+                                                      << TestChasis::RandDate();
+    }
+}
+
+void WeekGoalTest::WidgetTest()
+{
+    QFETCH(QString, name);
+    QFETCH(QColor, color);
+    QFETCH(QDate, startDate);
+
+    m_goal->setName(name);
+    m_goal->setColor(color);
+    m_goal->setStartDate(startDate);
+
+    UI::GoalWidgetBase * baseWidget = m_goal->CreateWidget();
+    UI::WeekGoalWidget * widget = qobject_cast<UI::WeekGoalWidget*>(baseWidget);
+
+    QVERIFY( baseWidget != NULL );
+    QVERIFY( widget != NULL );
+
+    if( (baseWidget == NULL) || (widget == NULL)) {
+        return;
+    }
+
+    QCOMPARE(widget->Name(), name);
+    QCOMPARE(widget->Color(), color);
+    QCOMPARE(widget->StartDate(), startDate);
+
+    delete baseWidget;
 }

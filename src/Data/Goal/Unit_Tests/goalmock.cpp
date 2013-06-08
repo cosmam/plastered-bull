@@ -9,6 +9,7 @@ GoalMock::GoalMock(QObject *parent) :
 {
 }
 
+// LCOV_EXCL_START
 QDateTime GoalMock::start() const
 {
     return QDateTime::currentDateTime();
@@ -23,3 +24,4 @@ UI::GoalWidgetBase * GoalMock::CreateWidget()
 {
     return NULL;
 }
+//LCOV_EXCL_END

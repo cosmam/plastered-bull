@@ -13,7 +13,7 @@ namespace Data {
 
     class Criteria : public QObject
     {
-        Q_OBJECT
+        Q_OBJECT                            // LCOV_EXCL_LINE
         Q_DECLARE_PRIVATE(Data::Criteria)
         Q_DISABLE_COPY(Criteria)
 
@@ -23,7 +23,7 @@ namespace Data {
         explicit Criteria(QObject * parent = 0);
 
         /// Virtual destructor
-        virtual ~Criteria() {}
+        virtual ~Criteria() {}      // LCOV_EXCL_LINE
 
         /// Virtual function to check if this criteria meets the bar set by the other
         virtual bool Met(const Criteria * other) const = 0;

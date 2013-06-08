@@ -16,6 +16,10 @@ using namespace Data;
 YearGoal::YearGoal(QObject *parent) :
     Goal(*new Data::YearGoalPrivate, parent)
 {
+    Q_D(Data::YearGoal);
+    d->setParent(this);
+    d->q_ptr = this;
+    d->init();
 }
 
 /**

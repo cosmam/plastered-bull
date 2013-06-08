@@ -5,40 +5,40 @@
 #include <QPointer>
 #include <QtTest>
 
-namespace Data
-{
+namespace Data {
     class CustomGoal;
 }
 
-namespace Test
-{
+namespace Test {
 
-class CustomGoalTest : public QObject
-{
-        Q_OBJECT
+    class CustomGoalTest : public QObject
+    {
+            Q_OBJECT
 
-    public:
-        explicit CustomGoalTest(QObject *parent = 0);
+        public:
+            explicit CustomGoalTest(QObject *parent = 0);
 
-    signals:
-        
-    public slots:
+        signals:
 
-    private:
-        QPointer<Data::CustomGoal> m_goal;
+        public slots:
 
-    private Q_SLOTS:
+        private:
+            QPointer<Data::CustomGoal> m_goal;
 
-        void initTestCase();
-        void cleanupTestCase();
-        void init();
-        void cleanup();
+        private Q_SLOTS:
 
-        void TestStart_data();
-        void TestStart();
-        void TestDuration_data();
-        void TestDuration();
-};
+            void initTestCase();
+            void cleanupTestCase();
+            void init();
+            void cleanup();
+
+            void TestStart_data();
+            void TestStart();
+            void TestDuration_data();
+            void TestDuration();
+            void WidgetTest_data();
+            void WidgetTest();
+    };
 
 }
 

@@ -3,30 +3,28 @@
 
 #include "goal.h"
 
-namespace UI
-{
+namespace UI {
     class GoalWidgetBase;
 }
 
-namespace Test
-{
+namespace Test {
 
-class GoalMock : public Data::Goal
-{
-        Q_OBJECT
-    public:
-        explicit GoalMock(QObject *parent = 0);
-        
-        QDateTime start() const;
-        QDateTime end() const;
+    class GoalMock : public Data::Goal
+    {
+            Q_OBJECT
+        public:
+            explicit GoalMock(QObject *parent = 0);
 
-        UI::GoalWidgetBase * CreateWidget();
+            QDateTime start() const;                // LCOV_EXCL_LINE
+            QDateTime end() const;                  // LCOV_EXCL_LINE
 
-    signals:
-        
-    public slots:
-        
-};
+            UI::GoalWidgetBase * CreateWidget();    // LCOV_EXCL_LINE
+
+        signals:
+
+        public slots:
+
+    };
 
 }
 

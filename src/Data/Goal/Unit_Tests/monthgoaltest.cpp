@@ -1,6 +1,9 @@
 #include "monthgoaltest.h"
 
+#include "goalwidgetbase.h"
 #include "monthgoal.h"
+#include "monthgoalwidget.h"
+#include "testchasis.h"
 
 using namespace Test;
 
@@ -96,4 +99,49 @@ void MonthGoalTest::TestYear()
         QCOMPARE(m_goal->start(),QDateTime(QDate(QDate::currentDate().year(),QDate::currentDate().month(),1),Time::startTime));
         QCOMPARE(m_goal->end(),QDateTime(QDate(QDate::currentDate().year(),QDate::currentDate().month(),QDate::currentDate().daysInMonth()),Time::endTime));
     }
+}
+
+void MonthGoalTest::WidgetTest_data()
+{
+    QTest::addColumn<QString>("name");
+    QTest::addColumn<QColor>("color");
+    QTest::addColumn<Time::Month>("month");
+    QTest::addColumn<int>("year");
+
+    for( int i=0 ; i < 10 ; ++i ) {
+        QTest::newRow(qPrintable(QString::number(i))) << TestChasis::RandString()
+                                                      << TestChasis::RandColor()
+                                                      << Time::ToMonth(TestChasis::RandInt(1,12))
+                                                      << TestChasis::RandInt(2010,2100);
+    }
+}
+
+void MonthGoalTest::WidgetTest()
+{
+    QFETCH(QString, name);
+    QFETCH(QColor, color);
+    QFETCH(Time::Month, month);
+    QFETCH(int, year);
+
+    m_goal->setName(name);
+    m_goal->setColor(color);
+    m_goal->setMonth(month);
+    m_goal->setYear(year);
+
+    UI::GoalWidgetBase * baseWidget = m_goal->CreateWidget();
+    UI::MonthGoalWidget * widget = qobject_cast<UI::MonthGoalWidget*>(baseWidget);
+
+    QVERIFY( baseWidget != NULL );
+    QVERIFY( widget != NULL );
+
+    if( (baseWidget == NULL) || (widget == NULL)) {
+        return;
+    }
+
+    QCOMPARE(widget->Name(), name);
+    QCOMPARE(widget->Color(), color);
+    QCOMPARE(widget->Month(), month);
+    QCOMPARE(widget->Year(), year);
+
+    delete baseWidget;
 }

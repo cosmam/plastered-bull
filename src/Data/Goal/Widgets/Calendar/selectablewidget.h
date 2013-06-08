@@ -19,7 +19,7 @@ namespace UI {
         explicit SelectableWidget(QWidget *parent = 0);
 
         /// Virtual destructor
-        virtual ~SelectableWidget() {}
+        virtual ~SelectableWidget() {}      // LCOV_EXCL_LINE
 
         /// Sets whether or not this is selected
         void setSelected(bool selected);
